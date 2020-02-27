@@ -20,8 +20,8 @@ namespace OptionalChainingNS {
     console.log("wheels ", car?.wheels);
     console.log("count ", car?.wheels?.count);
 
-    const count = !car ? 0 
-    : !car.wheels ? 0 
-    : !car.wheels.count ? 0
-    : car.wheels.count;
+    // const count = !car ? 0 
+    // : !car.wheels ? 0 
+    // : !car.wheels.count ? 0
+    // : car.wheels.count;
 }
