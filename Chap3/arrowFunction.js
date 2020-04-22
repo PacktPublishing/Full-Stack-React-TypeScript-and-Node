@@ -3,7 +3,7 @@
 // }
 // myFunc("hello");
 var func = function () { return console.log('func'); };
-var func1 = function () { return (10); };
+var func1 = function () { return ({ name: 'jon' }); };
 var func2 = function () {
     var val = 20;
     return val;
