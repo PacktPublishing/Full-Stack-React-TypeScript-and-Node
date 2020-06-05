@@ -7,16 +7,14 @@ interface GreetingState {
     message: string
 }
 
-export default class Greeting extends React.Component<GreetingProps> {
-    constructor(props: GreetingProps){
+export default class Greeting extends React.Component<GreetingProps, GreetingState> {
+    constructor(props: GreetingProps) {
         super(props);
 
         this.state = {
             message: Greeting.getNewMessage(props.name)
         }
-    }
-    state: GreetingState;
-    
+    }    
 
     static getDerivedStateFromProps(props: GreetingProps, state:GreetingState) {
         console.log(props, state);
