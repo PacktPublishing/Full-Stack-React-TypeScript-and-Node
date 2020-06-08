@@ -15,7 +15,7 @@ export default function Greeting(props: GreetingProps) {
       }
 
     return (<div>
-        <input value={props.enteredName} onChange={onChangeName} />
+            <input value={props.enteredName} onChange={onChangeName} />
             <div>
                 {props.message}
             </div>

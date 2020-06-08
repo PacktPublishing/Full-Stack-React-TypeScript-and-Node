@@ -4,16 +4,7 @@ import './App.css';
 import Greeting from "./GreetingFunctional";
 import ListCreator, { ListItem } from './ListCreator';
 
-const messageReducer = (state: any, action: any) => {
-  switch(action.type) {
-    case "message":
-      return { ...state, message: `Hello, ${action.payload}` }
-    default:
-      throw new Error("Invalid action type " + action.type);
-  }
-}
-
-const enteredNameReducer = (state: any, action: any) => {
+const reducer = (state: any, action: any) => {
   console.log("enteredNameReducer");
   switch(action.type) {
     case "enteredName":
@@ -21,6 +12,8 @@ const enteredNameReducer = (state: any, action: any) => {
         return state;
       }
       return { ...state, enteredName: action.payload}
+    case "message":
+      return { ...state, message: `Hello, ${action.payload}` }
     default:
       throw new Error("Invalid action type " + action.type);
   }
@@ -32,8 +25,7 @@ const initialState = {
 };
 
 function App() {  
-  const [{ message }, dispatchMsg] = useReducer(messageReducer, initialState);
-  const [{ enteredName }, dispatchName ] = useReducer(enteredNameReducer, initialState);
+  const [{ message, enteredName }, dispatch] = useReducer(reducer, initialState);
   const [startCount, setStartCount] = useState(0);
   const [count, setCount] = useState(0);
   const setCountCallback = useCallback(() => {
@@ -67,8 +59,8 @@ function App() {
       <Greeting 
         message={message} 
         enteredName={enteredName} 
-        dispatchMsg={dispatchMsg} 
-        dispatchName={dispatchName} />
+        dispatchMsg={dispatch} 
+        dispatchName={dispatch} />
 
       <div style={{marginTop: '10px'}}>
         <label>Enter a number and we'll increment it</label>
