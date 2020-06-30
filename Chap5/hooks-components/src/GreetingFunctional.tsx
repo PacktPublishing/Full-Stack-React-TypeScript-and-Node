@@ -3,15 +3,14 @@ import React from "react";
 interface GreetingProps {
     enteredName: string;
     message: string;
-    dispatchName: React.Dispatch<any>;
-    dispatchMsg: React.Dispatch<any>;
+    greetingDispatcher: React.Dispatch<{ type: string, payload: string }>;
 }
 
 export default function Greeting(props: GreetingProps) {
 
     const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        props.dispatchName({ type: "enteredName", payload: e.target.value });
-        props.dispatchMsg({ type: "message", payload: e.target.value });
+        props.greetingDispatcher({ type: "enteredName", payload: e.target.value });
+        props.greetingDispatcher({ type: "message", payload: e.target.value });
       }
 
     return (<div>

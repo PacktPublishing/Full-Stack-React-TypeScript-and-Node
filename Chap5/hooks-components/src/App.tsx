@@ -59,8 +59,7 @@ function App() {
       <Greeting 
         message={message} 
         enteredName={enteredName} 
-        dispatchMsg={dispatch} 
-        dispatchName={dispatch} />
+        greetingDispatcher={dispatch} />
 
       <div style={{marginTop: '10px'}}>
         <label>Enter a number and we'll increment it</label>
