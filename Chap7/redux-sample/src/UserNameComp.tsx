@@ -6,6 +6,7 @@ const UserNameComp = React.memo(() => {
     console.log("renders UserNameComp", renders.current++);
 
     const { username } = useContext(TestContext);
+    console.log("username UserNameComp", username);
     
     return <div>
         {username}
