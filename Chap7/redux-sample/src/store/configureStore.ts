@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore } from "redux";
 import { rootReducer } from "./AppState";
 
 const configureStore = () => {
