@@ -24,5 +24,5 @@ const server = http.createServer((req, res) => {
 
 const port = 8000;
 server.listen(port, () => {
-  console.log(`he server started on port ${port}`);
+  console.log(`The server started on port ${port}`);
 });
