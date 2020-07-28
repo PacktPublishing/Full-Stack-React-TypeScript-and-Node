@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var uuid_1 = require("uuid");
 var db_1 = require("./db");
+var NEW_TODO = "NEW TODO";
 var resolvers = {
     Query: {
         getUser: function (parent, args, ctx, info) { return __awaiter(void 0, void 0, void 0, function () {
@@ -70,16 +71,31 @@ var resolvers = {
         }); },
     },
     Mutation: {
-        addTodo: function (parent, args, ctx, info) { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                db_1.todos.push({
-                    id: uuid_1.v4(),
-                    title: args.title,
-                    description: args.description,
+        addTodo: function (parent, args, _a, info) {
+            var pubsub = _a.pubsub;
+            return __awaiter(void 0, void 0, void 0, function () {
+                var newTodo;
+                return __generator(this, function (_b) {
+                    newTodo = {
+                        id: uuid_1.v4(),
+                        title: args.title,
+                        description: args.description,
+                    };
+                    console.log("newTodo", newTodo);
+                    db_1.todos.push(newTodo);
+                    pubsub.publish(NEW_TODO, { newTodo: newTodo });
+                    return [2 /*return*/, db_1.todos[db_1.todos.length - 1]];
                 });
-                return [2 /*return*/, db_1.todos[db_1.todos.length - 1]];
             });
-        }); },
+        },
+    },
+    Subscription: {
+        newTodo: {
+            subscribe: function (parent, args, _a) {
+                var pubsub = _a.pubsub;
+                return pubsub.asyncIterator(NEW_TODO);
+            },
+        },
     },
 };
 exports.default = resolvers;
