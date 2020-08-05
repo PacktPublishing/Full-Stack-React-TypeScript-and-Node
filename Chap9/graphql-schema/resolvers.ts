@@ -6,7 +6,7 @@ import { todos } from "./db";
 interface User {
   id: string;
   username: string;
-  description?: string;
+  email?: string;
 }
 
 interface Todo {
