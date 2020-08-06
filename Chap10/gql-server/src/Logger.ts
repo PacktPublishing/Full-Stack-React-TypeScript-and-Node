@@ -6,7 +6,7 @@ export const log = async (
   info: any
 ) => {
   if (!parent) {
-    console.log("Start logging", parent);
+    console.log("Start logging");
   }
 
   const result = await resolver(parent, args, context, info);
