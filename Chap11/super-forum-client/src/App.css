@@ -1,0 +1,42 @@
+:root {
+  --min-screen-height: 1000px;
+}
+
+.App {
+  margin: 0 auto;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 0.7fr 0.9fr 1.5fr 0.9fr;
+  grid-template-rows: 2.75rem 3fr;
+  grid-template-areas:
+    "nav nav nav nav" "sidebar leftmenu content rightmenu"
+    "sidebar leftmenu content rightmenu" "sidebar leftmenu content rightmenu";
+  grid-gap: 0.4rem;
+}
+
+.navigation {
+  grid-area: nav;
+  background-color: aqua;
+}
+
+.sidebar {
+  min-height: var(--min-screen-height);
+  grid-area: sidebar;
+  background-color: aliceblue;
+}
+
+.leftmenu {
+  grid-area: leftmenu;
+  background-color: blueviolet;
+}
+
+.content {
+  min-height: var(--min-screen-height);
+  grid-area: content;
+  background-color: blanchedalmond;
+}
+
+.rightmenu {
+  grid-area: rightmenu;
+  background-color: coral;
+}
