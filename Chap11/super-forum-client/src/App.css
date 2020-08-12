@@ -9,9 +9,9 @@
   grid-template-columns: 0.7fr 0.9fr 1.5fr 0.9fr;
   grid-template-rows: 2.75rem 3fr;
   grid-template-areas:
-    "nav nav nav nav" "sidebar leftmenu content rightmenu"
-    "sidebar leftmenu content rightmenu" "sidebar leftmenu content rightmenu";
-  grid-gap: 0.4rem;
+    "nav nav nav nav"
+    "sidebar leftmenu content rightmenu";
+  gap: 0.75rem 0.4rem;
 }
 
 .navigation {
@@ -39,4 +39,13 @@
 .rightmenu {
   grid-area: rightmenu;
   background-color: coral;
+}
+
+@media screen and (orientation: portrait) and (max-width: 768px) {
+  .App {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "nav"
+      "content";
+  }
 }
