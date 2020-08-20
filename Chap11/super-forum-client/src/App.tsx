@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./components/Nav";
-import SideBar from "./components/SideBar";
+import SideBar from "./components/sidebar/SideBar";
 import LeftMenu from "./components/LeftMenu";
 import Main from "./components/Main";
 import RightMenu from "./components/RightMenu";

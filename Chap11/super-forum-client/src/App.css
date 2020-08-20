@@ -1,5 +1,7 @@
 :root {
   --min-screen-height: 1000px;
+  --border-color: gray;
+  --border: solid 0.1em gray;
 }
 
 .App {
@@ -41,11 +43,107 @@
   background-color: coral;
 }
 
+.modal-menu {
+  position: fixed;
+  left: 50%;
+  top: 4.5em;
+  transform: translate(-50%);
+  border: var(--border);
+  border-radius: 5px;
+  background-color: white;
+  padding: 1em 1em 1em 1em;
+  z-index: 1000;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.action-btn {
+  background-color: skyblue;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: white;
+  color: gray;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: solid 1px gray;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-buttons {
+  margin-top: 0.25em;
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+}
+
+.form-btn-left {
+  grid-column: 1;
+}
+
+.form-btn-right {
+  grid-column: 2;
+  margin-left: 2em;
+  padding-top: 0.8em;
+}
+
 @media screen and (orientation: portrait) and (max-width: 768px) {
+  .form-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .form-btn-left {
+    grid-column: 1;
+  }
+
+  .form-btn-right {
+    grid-column: 1;
+    margin-left: 0.5em;
+    padding-top: 0.5em;
+  }
+
   .App {
     grid-template-columns: 1fr;
     grid-template-areas:
       "nav"
       "content";
+  }
+
+  .modal-menu {
+    left: 0.5em;
+    right: 0.5em;
+    top: 3.5em;
+    transform: translate(0%);
   }
 }
