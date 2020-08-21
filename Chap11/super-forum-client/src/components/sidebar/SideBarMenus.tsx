@@ -3,12 +3,18 @@ import { AppState } from "../../store/AppState";
 import { useSelector, useDispatch } from "react-redux";
 import { UserProfileSetType } from "../../store/user/Reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faRegistered } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faRegistered,
+  faSignInAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import Registration from "../auth/Registration";
 import "./SideBarMenus.css";
+import Login from "../auth/Login";
 
 const SideBarMenus = () => {
   const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const user = useSelector((state: AppState) => state.user);
   const dispatch = useDispatch();
 
@@ -31,6 +37,14 @@ const SideBarMenus = () => {
     setShowRegister(!showRegister);
   };
 
+  const onClickLogin = (e: React.MouseEvent<Element, MouseEvent>) => {
+    setShowLogin(!showLogin);
+  };
+
+  const onClickToggleLogin = () => {
+    setShowLogin(!showLogin);
+  };
+
   return (
     <React.Fragment>
       <ul>
@@ -47,6 +61,13 @@ const SideBarMenus = () => {
             isOpen={showRegister}
             onClickToggle={onClickToggleRegister}
           />
+        </li>
+        <li>
+          <FontAwesomeIcon icon={faSignInAlt} />
+          <span onClick={onClickLogin} className="menu-name">
+            login
+          </span>
+          <Login isOpen={showLogin} onClickToggle={onClickToggleLogin} />
         </li>
       </ul>
     </React.Fragment>
