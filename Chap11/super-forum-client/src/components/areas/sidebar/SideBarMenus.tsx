@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { AppState } from "../../store/AppState";
+import { AppState } from "../../../store/AppState";
 import { useSelector, useDispatch } from "react-redux";
-import { UserProfileSetType } from "../../store/user/Reducer";
+import { UserProfileSetType } from "../../../store/user/Reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -9,10 +9,10 @@ import {
   faSignInAlt,
   faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
-import Registration from "../auth/Registration";
+import Registration from "../../auth/Registration";
 import "./SideBarMenus.css";
-import Login from "../auth/Login";
-import Logout from "../auth/Logout";
+import Login from "../../auth/Login";
+import Logout from "../../auth/Logout";
 
 const SideBarMenus = () => {
   const [showRegister, setShowRegister] = useState(false);

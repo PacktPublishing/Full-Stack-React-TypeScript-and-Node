@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useWindowDimensions } from "../hooks/useWindowDimensions";
-import { dataService } from "../services/DataService";
-import Category from "../models/Category";
+import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+import { dataService } from "../../services/DataService";
+import Category from "../../models/Category";
 import "./LeftMenu.css";
 
 const LeftMenu = () => {
