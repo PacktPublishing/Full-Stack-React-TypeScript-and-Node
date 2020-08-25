@@ -1,7 +1,17 @@
 :root {
   --min-screen-height: 1000px;
+
   --border-color: gray;
   --border: solid 0.1em gray;
+  --input-border-color: #e6ebf1;
+  --proceed-color: rgb(81, 142, 132);
+  --point-color: rgb(54, 69, 79);
+
+  --panel-border-thickness: 0.05em;
+  --panel-color: white;
+
+  --sm-font-size: 0.95em;
+  --sm-med-font-size: 1.1em;
 }
 
 .App {
@@ -36,6 +46,7 @@
   min-height: var(--min-screen-height);
   grid-area: content;
   background-color: blanchedalmond;
+  padding: 0.5em 0.75em 0.5em 0.75em;
 }
 
 .rightmenu {
@@ -121,6 +132,33 @@ input[type="submit"]:hover {
   grid-column: 2;
   margin-left: 2em;
   padding-top: 0.8em;
+}
+
+.title-bar {
+  margin-bottom: 0.4em;
+  padding-bottom: 0.25em !important;
+  border-bottom: 3px solid var(--input-border-color);
+}
+
+.panel {
+  display: flex;
+  flex-direction: row;
+  border: solid var(--panel-border-thickness) var(--border-color);
+  border-radius: 0.07em;
+  background-color: var(--panel-color);
+
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.icon-lg {
+  margin-left: 0.5em;
+  width: 2.23em;
+}
+
+.points-icon {
+  margin-top: 0.5em;
 }
 
 @media screen and (orientation: portrait) and (max-width: 768px) {

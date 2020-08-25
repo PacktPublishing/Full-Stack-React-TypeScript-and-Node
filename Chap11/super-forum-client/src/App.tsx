@@ -1,20 +1,19 @@
 import React from "react";
-import Nav from "./components/areas/Nav";
-import SideBar from "./components/areas/sidebar/SideBar";
-import LeftMenu from "./components/areas/LeftMenu";
-import Main from "./components/areas/main/Main";
-import RightMenu from "./components/areas/RightMenu";
 import "./App.css";
+import { Switch, Route } from "react-router-dom";
+import Home from "./components/routes/Home";
 
 function App() {
+  const renderHome = (props: any) => <Home {...props} />;
   return (
-    <div className="App">
-      <Nav />
-      <SideBar />
-      <LeftMenu />
-      <Main />
-      <RightMenu />
-    </div>
+    <Switch>
+      <Route exact={true} path="/" render={renderHome} />
+      <Route
+        exact={true}
+        path="/categorythreads/:categoryId"
+        render={renderHome}
+      />
+    </Switch>
   );
 }
 

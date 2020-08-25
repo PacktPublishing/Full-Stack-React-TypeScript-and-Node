@@ -29,6 +29,7 @@ class ErrorBoundary extends React.Component<
   };
 
   componentDidCatch(error: Error | null, info: object) {
+    console.log("error", error);
     this.setState({ hasError: true, error, info });
   }
 
@@ -42,7 +43,7 @@ class ErrorBoundary extends React.Component<
         </div>
       );
     }
-    console.log("children");
+
     return this.props.children;
   }
 }
