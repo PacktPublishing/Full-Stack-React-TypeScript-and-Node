@@ -23,7 +23,7 @@ const TopCategory: FC<TopCategoryProps> = ({ topCategories }) => {
                 {newThreadElements}
             </ul>);
         }
-    }, []);
+    }, [topCategories]);
 
     return (
         <div className="topcat-item-container">

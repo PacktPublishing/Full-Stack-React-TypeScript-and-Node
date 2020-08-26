@@ -2,8 +2,9 @@
   --min-screen-height: 1000px;
 
   --border-color: gray;
-  --border: solid 0.1em gray;
+  --border: solid 0.1em var(--border-color);
   --input-border-color: #e6ebf1;
+  --input-border: solid 3px var(--input-border-color);
   --proceed-color: rgb(81, 142, 132);
   --point-color: rgb(54, 69, 79);
 

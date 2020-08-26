@@ -1,17 +1,17 @@
 import Category from "./Category";
 import ThreadItem from "./ThreadItem";
 
-export default interface Thread {
-  id: string;
-  views: number;
-  flagPoints: number;
-  title: string;
-  body: string;
-  userName: string;
-  userId: string;
-  points: number;
-  createdOn: Date;
-  lastModifiedOn: Date;
-  threadItems: [ThreadItem];
-  category: Category;
+export default class Thread {
+  constructor(public id: string,
+    public views: number,
+    public flagPoints: number,
+    public title: string,
+    public body: string,
+    public userName: string,
+    public userId: string,
+    public points: number,
+    public createdOn: Date,
+    public lastModifiedOn: Date,
+    public threadItems: Array<ThreadItem>,
+    public category: Category) {}
 }

@@ -71,7 +71,7 @@ const SideBarMenus = () => {
         <li>
           <FontAwesomeIcon icon={faSignOutAlt} />
           <span onClick={onClickToggleLogout} className="menu-name">
-            login
+            logout
           </span>
           <Logout isOpen={showLogout} onClickToggle={onClickToggleLogout} />
         </li>

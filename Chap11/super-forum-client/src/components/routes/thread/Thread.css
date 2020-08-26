@@ -1,0 +1,11 @@
+.thread-container {
+    display: grid;
+    grid-template-columns: 1fr 1em;
+    border: var(--border);
+    margin-bottom: 2em;
+    padding: .5em .75em .5em;
+}
+
+.thread-header-container {
+  border-bottom: var(--input-border);
+}
