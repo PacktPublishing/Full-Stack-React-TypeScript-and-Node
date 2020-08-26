@@ -161,6 +161,10 @@ input[type="submit"]:hover {
   margin-top: 0.5em;
 }
 
+.clickable-span {
+  cursor: pointer;
+}
+
 @media screen and (orientation: portrait) and (max-width: 768px) {
   .form-buttons {
     grid-template-columns: 1fr;

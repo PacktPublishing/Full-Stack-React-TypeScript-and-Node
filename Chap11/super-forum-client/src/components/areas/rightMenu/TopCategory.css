@@ -1,0 +1,9 @@
+.topcat-item-container {
+    padding: 0.75em;
+    padding-left: 0.5em;
+    font-size: var(--sm-med-font-size);
+}
+
+.topcat-threads {
+    padding-left: 0.2em;
+}
