@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-ul {
+ul:not([data-slate-node="element"]) {
   list-style-type: none;
 }
 

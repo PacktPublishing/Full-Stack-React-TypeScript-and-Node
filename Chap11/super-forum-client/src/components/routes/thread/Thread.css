@@ -1,11 +1,50 @@
 .thread-container {
-    display: grid;
-    grid-template-columns: 1fr 1em;
-    border: var(--border);
-    margin-bottom: 2em;
-    padding: .5em .75em .5em;
+  margin: 0 auto;
+  max-width: 1200px;
+  margin-bottom: 2em;
+}
+
+.thread-nav-container {
+  margin-top: 0.75em;
+}
+
+.thread-content-container {
+  display: grid;
+  grid-template-columns: 1fr 4em;
+  border: var(--border);
+  border-radius: 0.3em;
+  margin-top: 0.75em;
+  padding: 0 1em 0.75em 1em;
 }
 
 .thread-header-container {
+  grid-column: 1;
   border-bottom: var(--input-border);
+  padding-bottom: 0.75em;
+}
+
+.thread-category-container {
+  grid-column: 1;
+  margin-top: 0.75em;
+}
+
+.thread-category-dropdown {
+  margin-top: 1em;
+  max-width: 12em;
+}
+
+.thread-title-container {
+  grid-column: 1;
+  margin-top: 0.75em;
+}
+
+.thread-body-container {
+  grid-column: 1;
+  margin-top: 1em;
+}
+
+.thread-body-editor {
+  margin-top: 0.5em;
+  border: solid 1px var(--proceed-color);
+  padding: 0.5em 1em 0.5em 1em;
 }

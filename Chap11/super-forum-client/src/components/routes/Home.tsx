@@ -8,7 +8,9 @@ import RightMenu from "../areas/rightMenu/RightMenu";
 const Home: FC = () => {
   return (
     <div className="App">
-      <Nav />
+      <div className="navigation">
+        <Nav />
+      </div>
       <SideBar />
       <LeftMenu />
       <Main />
