@@ -1,3 +1,5 @@
+import Thread from "./Thread";
+
 export default class ThreadItem {
   constructor(
     public id: string,
@@ -6,6 +8,7 @@ export default class ThreadItem {
     public body: string,
     public userName: string,
     public userId: string,
-    public createdOn: Date
+    public createdOn: Date,
+    public threadId: string
   ) {}
 }

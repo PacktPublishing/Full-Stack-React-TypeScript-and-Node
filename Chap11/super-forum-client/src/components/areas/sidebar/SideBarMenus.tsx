@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { AppState } from "../../../store/AppState";
-import { useSelector, useDispatch } from "react-redux";
-import { UserProfileSetType } from "../../../store/user/Reducer";
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
   faRegistered,
   faSignInAlt,
-  faSignOutAlt
+  faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import Registration from "../../auth/Registration";
 import "./SideBarMenus.css";
@@ -19,18 +18,6 @@ const SideBarMenus = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
   const user = useSelector((state: AppState) => state.user);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // todo: replace with GraphQL call
-    dispatch({
-      type: UserProfileSetType,
-      payload: {
-        id: 1,
-        userName: "testUser",
-      },
-    });
-  }, [dispatch]);
 
   const onClickToggleRegister = () => {
     setShowRegister(!showRegister);
@@ -42,7 +29,7 @@ const SideBarMenus = () => {
 
   const onClickToggleLogout = () => {
     setShowLogout(!showLogout);
-  }
+  };
 
   return (
     <React.Fragment>

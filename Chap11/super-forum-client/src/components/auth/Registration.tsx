@@ -1,13 +1,10 @@
 import React, { FC, useReducer } from "react";
 import ReactModal from "react-modal";
 import "./Registration.css";
-import {
-  isPasswordValid,
-  PasswordTestResult,
-} from "../../common/validators/PasswordValidator";
 import ModalProps from "../types/ModalProps";
 import userReducer from "./common/UserReducer";
 import { allowSubmit } from "./common/Helpers";
+import PasswordComparison from "./common/PasswordComparison";
 
 const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
   const [
@@ -32,29 +29,6 @@ const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
     dispatch({ payload: e.target.value, type: "email" });
     if (!e.target.value) allowSubmit(dispatch, "Email cannot be empty", true);
     else allowSubmit(dispatch, "", false);
-  };
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ payload: e.target.value, type: "password" });
-    const passwordCheck: PasswordTestResult = isPasswordValid(e.target.value);
-
-    if (!passwordCheck.isValid) {
-      allowSubmit(dispatch, passwordCheck.message, true);
-      return;
-    }
-    passwordsSame(passwordConfirm, e.target.value);
-  };
-  const onChangePasswordConfirm = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ payload: e.target.value, type: "passwordConfirm" });
-    passwordsSame(password, e.target.value);
-  };
-  const passwordsSame = (passwordVal: string, passwordConfirmVal: string) => {
-    if (passwordVal !== passwordConfirmVal) {
-      allowSubmit(dispatch, "Passwords do not match", true);
-      return false;
-    } else {
-      allowSubmit(dispatch, "", false);
-      return true;
-    }
   };
 
   const onClickRegister = (
@@ -88,26 +62,10 @@ const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
             <input type="text" value={email} onChange={onChangeEmail} />
           </div>
           <div>
-            <label>
-              password &nbsp;{" "}
-              <label style={{ fontSize: "small" }}>
-                (min length 8, 1 cap, 1 number, 1 symbol)
-              </label>
-            </label>
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={onChangePassword}
-            />
-          </div>
-          <div>
-            <label>password confirmation</label>
-            <input
-              type="password"
-              placeholder="Password Confirmation"
-              value={passwordConfirm}
-              onChange={onChangePasswordConfirm}
+            <PasswordComparison
+              dispatch={dispatch}
+              password={password}
+              passwordConfirm={passwordConfirm}
             />
           </div>
         </div>
@@ -129,7 +87,6 @@ const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
               Close
             </button>
           </div>
-
           <span className="form-btn-right">
             <strong>{resultMsg}</strong>
           </span>

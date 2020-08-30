@@ -25,7 +25,7 @@ const Thread = () => {
   }, [id]);
 
   return (
-    <div className="thread-container">
+    <div className="screen-root-container">
       <div className="thread-nav-container">
         <Nav />
       </div>
