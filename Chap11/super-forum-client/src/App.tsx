@@ -11,14 +11,8 @@ function App() {
   return (
     <Switch>
       <Route exact={true} path="/" render={renderHome} />
-      <Route
-        path="/categorythreads/:categoryId"
-        render={renderHome}
-      />
-      <Route
-        path="/thread/:id"
-        render={renderThread}
-      />
+      <Route path="/categorythreads/:categoryId" render={renderHome} />
+      <Route path="/thread/:id" render={renderThread} />
     </Switch>
   );
 }

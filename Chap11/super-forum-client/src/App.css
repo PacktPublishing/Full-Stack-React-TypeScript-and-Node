@@ -7,6 +7,7 @@
   --input-border: solid 3px var(--input-border-color);
   --proceed-color: rgb(81, 142, 132);
   --point-color: rgb(54, 69, 79);
+  --section-divider-color: rgba(115, 136, 181, 0.35);
 
   --panel-border-thickness: 0.05em;
   --panel-color: white;
@@ -176,6 +177,11 @@ input[type="submit"]:hover {
 .field:hover {
   background-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+hr {
+  width: 100%;
+  border: solid 2px var(--section-divider-color);
 }
 
 @media screen and (orientation: portrait) and (max-width: 768px) {

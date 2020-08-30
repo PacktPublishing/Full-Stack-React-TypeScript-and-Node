@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { getTimePastIfLessThanDay } from "../../../common/dates";
+import UserNameAndTime from "./UserNameAndTime";
 
 interface ThreadHeaderProps {
   userName?: string;
@@ -15,12 +15,7 @@ const ThreadHeader: FC<ThreadHeaderProps> = ({
   return (
     <div className="thread-header-container">
       <h3>{title}</h3>
-      <div>
-        <strong>{userName}</strong>
-        <label style={{ marginLeft: "1em" }}>
-          {getTimePastIfLessThanDay(lastModifiedOn)}
-        </label>
-      </div>
+      <UserNameAndTime userName={userName} lastModifiedOn={lastModifiedOn} />
     </div>
   );
 };

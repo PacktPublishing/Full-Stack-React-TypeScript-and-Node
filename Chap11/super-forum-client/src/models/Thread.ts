@@ -2,9 +2,9 @@ import Category from "./Category";
 import ThreadItem from "./ThreadItem";
 
 export default class Thread {
-  constructor(public id: string,
+  constructor(
+    public id: string,
     public views: number,
-    public flagPoints: number,
     public title: string,
     public body: string,
     public userName: string,
@@ -13,5 +13,6 @@ export default class Thread {
     public createdOn: Date,
     public lastModifiedOn: Date,
     public threadItems: Array<ThreadItem>,
-    public category: Category) {}
+    public category: Category
+  ) {}
 }

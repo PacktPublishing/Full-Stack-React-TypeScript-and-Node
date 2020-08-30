@@ -2,29 +2,52 @@
   margin: 0 auto;
   max-width: 1200px;
   margin-bottom: 2em;
+  border: var(--border);
+  border-radius: 0.3em;
 }
 
 .thread-nav-container {
-  margin-top: 0.75em;
+  margin-top: 0;
 }
 
 .thread-content-container {
   display: grid;
   grid-template-columns: 1fr 4em;
-  border: var(--border);
-  border-radius: 0.3em;
+  grid-template-rows: 1fr auto;
   margin-top: 0.75em;
-  padding: 0 1em 0.75em 1em;
+}
+
+.thread-content-points-container {
+  grid-column: 2;
+  grid-row: 1;
+  border: solid 1px var(--border-color);
+  margin-right: 1em;
+  padding-bottom: 1em;
+}
+.thread-content-points-container > div {
+  height: 100%;
+}
+
+.thread-content-post-container {
+  grid-column: 1;
+  grid-row: 1;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.thread-content-response-container {
+  grid-column: 1;
+  grid-row: 2;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .thread-header-container {
-  grid-column: 1;
   border-bottom: var(--input-border);
   padding-bottom: 0.75em;
 }
 
 .thread-category-container {
-  grid-column: 1;
   margin-top: 0.75em;
 }
 
@@ -34,12 +57,10 @@
 }
 
 .thread-title-container {
-  grid-column: 1;
   margin-top: 0.75em;
 }
 
 .thread-body-container {
-  grid-column: 1;
   margin-top: 1em;
 }
 
@@ -47,4 +68,9 @@
   margin-top: 0.5em;
   border: solid 1px var(--proceed-color);
   padding: 0.5em 1em 0.5em 1em;
+}
+
+.thread-section-divider {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
