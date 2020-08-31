@@ -43,12 +43,7 @@ const PasswordComparison: FC<PasswordComparisonProps> = ({
   return (
     <React.Fragment>
       <div>
-        <label>
-          password &nbsp;{" "}
-          <label style={{ fontSize: "small" }}>
-            (min length 8, 1 cap, 1 number, 1 symbol)
-          </label>
-        </label>
+        <label>password</label>
         <input
           type="password"
           placeholder="Password"

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
-import { dataService } from "../../services/DataService";
+import { getCategories } from "../../services/DataService";
 import Category from "../../models/Category";
 import "./LeftMenu.css";
 
@@ -11,8 +11,7 @@ const LeftMenu = () => {
   );
 
   useEffect(() => {
-    dataService
-      .getCategories()
+    getCategories()
       .then((categories: Array<Category>) => {
         const cats = categories.map((cat) => {
           return <li key={cat.id}>{cat.name}</li>;

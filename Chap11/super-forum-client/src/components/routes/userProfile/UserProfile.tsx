@@ -5,7 +5,7 @@ import "./UserProfile.css";
 import Nav from "../../areas/Nav";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../store/AppState";
-import { dataService } from "../../../services/DataService";
+import { getUserThreads } from "../../../services/DataService";
 import Thread from "../../../models/Thread";
 import { Link } from "react-router-dom";
 import ThreadItem from "../../../models/ThreadItem";
@@ -33,7 +33,7 @@ const UserProfile = () => {
         payload: user.userName,
       });
 
-      dataService.getUserThreads(user.id).then((items) => {
+      getUserThreads(user.id).then((items) => {
         const threadItemsInThreadList: Array<ThreadItem> = [];
         const threadList = items.map((th: Thread) => {
           for (let i = 0; i < th.threadItems.length; i++) {
@@ -52,7 +52,7 @@ const UserProfile = () => {
 
         const threadItemList = threadItemsInThreadList.map((ti: ThreadItem) => (
           <li key={`user-th-${ti.threadId}`}>
-            <Link to={`/thread/${ti.id}`} className="userprofile-link">
+            <Link to={`/thread/${ti.threadId}`} className="userprofile-link">
               {ti.body}
             </Link>
           </li>
@@ -79,7 +79,9 @@ const UserProfile = () => {
               password={password}
               passwordConfirm={passwordConfirm}
             />
-            <button disabled={isSubmitDisabled}>Change Password</button>
+            <button className="action-btn" disabled={isSubmitDisabled}>
+              Change Password
+            </button>
           </div>
           <div style={{ marginTop: ".5em" }}>
             <label>{resultMsg}</label>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AppState } from "../../../store/AppState";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,7 @@ import Registration from "../../auth/Registration";
 import "./SideBarMenus.css";
 import Login from "../../auth/Login";
 import Logout from "../../auth/Logout";
+import { Link } from "react-router-dom";
 
 const SideBarMenus = () => {
   const [showRegister, setShowRegister] = useState(false);
@@ -36,7 +37,9 @@ const SideBarMenus = () => {
       <ul>
         <li>
           <FontAwesomeIcon icon={faUser} />
-          <span className="menu-name">{user?.userName}</span>
+          <span className="menu-name">
+            <Link to={`/userprofile/${user?.id}`}>{user?.userName}</Link>
+          </span>
         </li>
         <li>
           <FontAwesomeIcon icon={faRegistered} />

@@ -5,7 +5,7 @@ import ThreadHeader from "./ThreadHeader";
 import ThreadCategory from "./ThreadCategory";
 import ThreadTitle from "./ThreadTitle";
 import ThreadModel from "../../../models/Thread";
-import { dataService } from "../../../services/DataService";
+import { getThreadById } from "../../../services/DataService";
 import Nav from "../../areas/Nav";
 import ThreadBody from "./ThreadBody";
 import ThreadResponsesBuilder from "./ThreadResponsesBuilder";
@@ -18,7 +18,7 @@ const Thread = () => {
   useEffect(() => {
     console.log("Thread id", id);
     if (id && id > 0) {
-      dataService.getThreadById(id).then((th) => {
+      getThreadById(id).then((th) => {
         setThread(th);
       });
     }

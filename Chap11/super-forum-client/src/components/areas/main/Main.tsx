@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MainHeader from "./MainHeader";
 import { useParams } from "react-router-dom";
 import ThreadCard from "./ThreadCard";
-import { dataService } from "../../../services/DataService";
+import { getThreadsByCategory } from "../../../services/DataService";
 import Category from "../../../models/Category";
 const Main = () => {
   const { categoryId } = useParams();
@@ -15,7 +15,7 @@ const Main = () => {
     console.log("main categoryId", categoryId);
 
     if (categoryId && categoryId > 0) {
-      dataService.getThreadsByCategory(categoryId).then((threads) => {
+      getThreadsByCategory(categoryId).then((threads) => {
         const cards = threads.map((th) => {
           return <ThreadCard key={`thread-${th.id}`} thread={th} />;
         });
