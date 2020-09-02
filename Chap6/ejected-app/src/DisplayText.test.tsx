@@ -1,67 +1,77 @@
-import React from 'react';
-import { render, fireEvent, cleanup, wait } from '@testing-library/react';
-import DisplayText from './DisplayText';
+import React from "react";
+import { render, fireEvent, cleanup, wait } from "@testing-library/react";
+import DisplayText from "./DisplayText";
 import "@testing-library/jest-dom/extend-expect";
 
 jest.mock("./UserTodos");
 
-afterEach(cleanup);
-
 describe("Test DisplayText", () => {
-    const userFullName = "John Tester";
-    
-    const getUserFullnameMock = (username: string): [Promise<string>, jest.Mock<Promise<string>, [string]>] => {        
-        const promise = new Promise<string>((res, rej) => {
-            res(userFullName);
-        });
-        const getUserFullname = jest.fn(async (username: string): Promise<string> => {             
-            return promise;
-        });
+  const userFullName = "John Tester";
 
-        return [promise, getUserFullname];
-    }
-
-    it("renders without crashing", () => {
-        const username = "testuser";
-        const [promise, getUserFullname] = getUserFullnameMock(username);
-
-        const { baseElement } = render(<DisplayText getUserFullname={getUserFullname} />);
-        expect(baseElement).toBeInTheDocument();
+  const getUserFullnameMock = (
+    username: string
+  ): [Promise<string>, jest.Mock<Promise<string>, [string]>] => {
+    const promise = new Promise<string>((res, rej) => {
+      res(userFullName);
     });
+    const getUserFullname = jest.fn(
+      async (username: string): Promise<string> => {
+        return promise;
+      }
+    );
 
-    it("matches snapshot", () => {
-        const username = "testuser";
-        const [promise, getUserFullname] = getUserFullnameMock(username);
+    return [promise, getUserFullname];
+  };
 
-        const { baseElement } = render(<DisplayText getUserFullname={getUserFullname} />);
-        expect(baseElement).toMatchSnapshot();
-    });
+  it("renders without crashing", () => {
+    const username = "testuser";
+    const [promise, getUserFullname] = getUserFullnameMock(username);
 
-    it("receive input text", () => {
-        const username = "testuser";
-        const [promise, getUserFullname] = getUserFullnameMock(username);
+    const { baseElement } = render(
+      <DisplayText getUserFullname={getUserFullname} />
+    );
+    expect(baseElement).toBeInTheDocument();
+  });
 
-        const { getByTestId } = render(<DisplayText getUserFullname={getUserFullname} />);
-        const input = getByTestId("user-input");
-        fireEvent.change(input, { target: { value: username } });
-        expect(input).toBeInTheDocument();
-        expect(input).toHaveValue(username);
-    });
+  it("matches snapshot", () => {
+    const username = "testuser";
+    const [promise, getUserFullname] = getUserFullnameMock(username);
 
-    it("shows welcome message", async () => {
-        const username = "testuser";
-        const [promise, getUserFullname] = getUserFullnameMock(username);
-        
-        const msg = `Welcome to React testing, ${userFullName}`;
-        const { getByTestId } = render(<DisplayText getUserFullname={getUserFullname} />);
-        const input = getByTestId("user-input");
-        const label = getByTestId("final-msg");
-        fireEvent.change(input, { target: { value: username } });
-        const btn = getByTestId("input-submit");
-        fireEvent.click(btn);
-        
-        expect(label).toBeInTheDocument();
-        await wait(() => promise);
-        expect(label.innerHTML).toBe(msg);        
-    });
+    const { baseElement } = render(
+      <DisplayText getUserFullname={getUserFullname} />
+    );
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  it("receive input text", () => {
+    const username = "testuser";
+    const [promise, getUserFullname] = getUserFullnameMock(username);
+
+    const { getByTestId } = render(
+      <DisplayText getUserFullname={getUserFullname} />
+    );
+    const input = getByTestId("user-input");
+    fireEvent.change(input, { target: { value: username } });
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveValue(username);
+  });
+
+  it("shows welcome message", async () => {
+    const username = "testuser";
+    const [promise, getUserFullname] = getUserFullnameMock(username);
+
+    const msg = `Welcome to React testing, ${userFullName}`;
+    const { getByTestId } = render(
+      <DisplayText getUserFullname={getUserFullname} />
+    );
+    const input = getByTestId("user-input");
+    const label = getByTestId("final-msg");
+    fireEvent.change(input, { target: { value: username } });
+    const btn = getByTestId("input-submit");
+    fireEvent.click(btn);
+
+    expect(label).toBeInTheDocument();
+    await wait(() => promise);
+    expect(label.innerHTML).toBe(msg);
+  });
 });
