@@ -10,7 +10,11 @@ import {
   getThreadById,
   getThreadsByCategoryId,
 } from "./repo/ThreadRepo";
-import { createThreadItem, getThreadItemById } from "./repo/ThreadItemRepo";
+import {
+  createThreadItem,
+  getThreadItemById,
+  getThreadItemsByThreadId,
+} from "./repo/ThreadItemRepo";
 require("dotenv").config();
 
 const main = async () => {
@@ -172,6 +176,26 @@ const main = async () => {
 
       if (threadItemResult && threadItemResult.entity) {
         res.send(threadItemResult.entity.body);
+      } else if (threadItemResult && threadItemResult.messages) {
+        res.send(threadItemResult.messages[0]);
+      }
+    } catch (ex) {
+      console.log(ex);
+      res.send(ex.message);
+    }
+  });
+  router.post("/threadsitemsbythread", async (req, res, next) => {
+    try {
+      const threadItemResult = await getThreadItemsByThreadId(
+        req.body.threadId
+      );
+
+      if (threadItemResult && threadItemResult.entities) {
+        let items = "";
+        threadItemResult.entities.forEach((ti) => {
+          items += ti.body + ", ";
+        });
+        res.send(items);
       } else if (threadItemResult && threadItemResult.messages) {
         res.send(threadItemResult.messages[0]);
       }

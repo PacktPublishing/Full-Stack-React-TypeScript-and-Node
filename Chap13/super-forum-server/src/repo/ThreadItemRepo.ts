@@ -68,10 +68,10 @@ export const getThreadItemById = async (
 export const getThreadItemsByThreadId = async (
   threadId: string
 ): Promise<QueryArrayResult<ThreadItem>> => {
-  const threadItems = await ThreadItem.createQueryBuilder("threadItems")
-    .where(`threadItems."threadId" = :threadId`, { threadId })
-    .leftJoinAndSelect("threadItems.thread", "thread")
-    .orderBy("threadItems.createdOn", "DESC")
+  const threadItems = await ThreadItem.createQueryBuilder("ti")
+    .where(`ti."threadId" = :threadId`, { threadId })
+    .leftJoinAndSelect("ti.thread", "thread")
+    .orderBy("ti.createdOn", "DESC")
     .getMany();
 
   if (!threadItems) {
