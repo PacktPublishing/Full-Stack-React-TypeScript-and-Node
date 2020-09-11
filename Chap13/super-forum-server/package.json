@@ -1,0 +1,38 @@
+{
+  "name": "super-forum-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev --respawn src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "class-validator": "^0.12.2",
+    "connect-redis": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "ioredis": "^4.17.3",
+    "pg": "^8.3.3",
+    "typeorm": "^0.2.25",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/connect-redis": "0.0.14",
+    "@types/cors": "^2.8.7",
+    "@types/express": "^4.17.8",
+    "@types/express-session": "^1.17.0",
+    "@types/ioredis": "^4.17.4",
+    "@types/pg": "^7.14.4",
+    "@types/uuid": "^8.3.0",
+    "ts-node-dev": "^1.0.0-pre.62",
+    "typescript": "^4.0.2"
+  }
+}
