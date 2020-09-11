@@ -3,8 +3,14 @@ import session from "express-session";
 import connectRedis from "connect-redis";
 import Redis from "ioredis";
 import { createConnection } from "typeorm";
-import { register, login } from "./repo/UserRepo";
+import { register, login, logout } from "./repo/UserRepo";
 import bodyParser from "body-parser";
+import {
+  createThread,
+  getThreadById,
+  getThreadsByCategoryId,
+} from "./repo/ThreadRepo";
+import { createThreadItem, getThreadItemById } from "./repo/ThreadItemRepo";
 require("dotenv").config();
 
 const main = async () => {
@@ -39,17 +45,24 @@ const main = async () => {
       },
     } as any)
   );
+
   app.use(router);
+  router.get("/", (req, res, next) => {
+    req.session!.test = "hello";
+    res.send("hello");
+  });
   router.post("/register", async (req, res, next) => {
     try {
       console.log("params", req.body);
-      const user = await register(
+      const userResult = await register(
         req.body.email,
         req.body.userName,
         req.body.password
       );
-      if (user) {
-        res.send(`new user created, userid: ${user.id}`);
+      if (userResult && userResult.user) {
+        res.send(`new user created, userId: ${userResult.user.id}`);
+      } else if (userResult && userResult.messages) {
+        res.send(userResult.messages[0]);
       } else {
         next();
       }
@@ -60,14 +73,110 @@ const main = async () => {
   router.post("/login", async (req, res, next) => {
     try {
       console.log("params", req.body);
-      const user = await login(req.body.userName, req.body.password);
-      if (user) {
-        req.session!.userid = user?.id;
-        res.send(`user logged in, userid: ${req.session!.userid}`);
+      const userResult = await login(req.body.userName, req.body.password);
+      if (userResult && userResult.user) {
+        req.session!.userId = userResult.user?.id;
+        res.send(`user logged in, userId: ${req.session!.userId}`);
+      } else if (userResult && userResult.messages) {
+        res.send(userResult.messages[0]);
       } else {
         next();
       }
     } catch (ex) {
+      res.send(ex.message);
+    }
+  });
+  router.post("/logout", async (req, res, next) => {
+    try {
+      console.log("params", req.body);
+      const msg = await logout(req.body.userName);
+      if (msg) {
+        req.session!.userId = null;
+        res.send(msg);
+      } else {
+        next();
+      }
+    } catch (ex) {
+      console.log(ex);
+      res.send(ex.message);
+    }
+  });
+
+  router.post("/createthread", async (req, res, next) => {
+    try {
+      console.log("userId", req.session);
+      console.log("body", req.body);
+      const msg = await createThread(
+        req.session!.userId, // notice this is from session!
+        req.body.categoryId,
+        req.body.title,
+        req.body.body
+      );
+
+      res.send(msg);
+    } catch (ex) {
+      console.log(ex);
+      res.send(ex.message);
+    }
+  });
+  router.post("/thread", async (req, res, next) => {
+    try {
+      const threadResult = await getThreadById(req.body.id);
+
+      if (threadResult && threadResult.entity) {
+        res.send(threadResult.entity.title);
+      } else if (threadResult && threadResult.messages) {
+        res.send(threadResult.messages[0]);
+      }
+    } catch (ex) {
+      console.log(ex);
+      res.send(ex.message);
+    }
+  });
+  router.post("/threadsbycategory", async (req, res, next) => {
+    try {
+      const threadResult = await getThreadsByCategoryId(req.body.categoryId);
+
+      if (threadResult && threadResult.entities) {
+        let items = "";
+        threadResult.entities.forEach((th) => {
+          items += th.title + ", ";
+        });
+        res.send(items);
+      } else if (threadResult && threadResult.messages) {
+        res.send(threadResult.messages[0]);
+      }
+    } catch (ex) {
+      console.log(ex);
+      res.send(ex.message);
+    }
+  });
+
+  router.post("/createthreaditem", async (req, res, next) => {
+    try {
+      const msg = await createThreadItem(
+        req.session!.userId, // notice this is from session!
+        req.body.threadId,
+        req.body.body
+      );
+
+      res.send(msg);
+    } catch (ex) {
+      console.log(ex);
+      res.send(ex.message);
+    }
+  });
+  router.post("/threaditem", async (req, res, next) => {
+    try {
+      const threadItemResult = await getThreadItemById(req.body.id);
+
+      if (threadItemResult && threadItemResult.entity) {
+        res.send(threadItemResult.entity.body);
+      } else if (threadItemResult && threadItemResult.messages) {
+        res.send(threadItemResult.messages[0]);
+      }
+    } catch (ex) {
+      console.log(ex);
       res.send(ex.message);
     }
   });

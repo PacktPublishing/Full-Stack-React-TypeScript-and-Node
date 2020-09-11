@@ -5,28 +5,30 @@ import { isEmailValid } from "../common/validators/EmailValidator";
 
 const saltRounds = 10;
 
-export class AuthError extends Error {
-  constructor(message: string) {
-    super(message);
-  }
+export class UserResult {
+  constructor(public messages?: Array<string>, public user?: User) {}
 }
 
 export const register = async (
   email: string,
   userName: string,
   password: string
-): Promise<User | undefined> => {
+): Promise<UserResult> => {
   const result = isPasswordValid(password);
   if (!result.isValid) {
-    throw new AuthError(
-      "Passwords must have min length 8, 1 upper character, 1 number, and 1 symbol"
-    );
+    return {
+      messages: [
+        "Passwords must have min length 8, 1 upper character, 1 number, and 1 symbol",
+      ],
+    };
   }
 
   const trimmedEmail = email.trim().toLowerCase();
   const emailErrorMsg = isEmailValid(trimmedEmail);
   if (emailErrorMsg) {
-    throw new AuthError(emailErrorMsg);
+    return {
+      messages: [emailErrorMsg],
+    };
   }
 
   const salt = await bcrypt.genSalt(saltRounds);
@@ -39,26 +41,54 @@ export const register = async (
   }).save();
 
   userEntity.password = ""; // blank out for security
-  return userEntity;
+  return {
+    user: userEntity,
+  };
 };
 
 export const login = async (
   userName: string,
   password: string
-): Promise<User | undefined> => {
+): Promise<UserResult> => {
   const user = await User.findOne({
     where: { userName },
   });
-  if (!user) return;
+  if (!user) {
+    return {
+      messages: [userNotFound(userName)],
+    };
+  }
 
   if (!user.confirmed) {
-    throw new AuthError("User has not confirmed their registration email yet.");
+    return {
+      messages: ["User has not confirmed their registration email yet."],
+    };
   }
 
   const passwordMatch = await bcrypt.compare(password, user?.password);
   if (!passwordMatch) {
-    throw new AuthError("Password is invalid.");
+    return {
+      messages: ["Password is invalid."],
+    };
   }
 
-  return user;
+  return {
+    user: user,
+  };
 };
+
+export const logout = async (userName: string): Promise<string> => {
+  const user = await User.findOne({
+    where: { userName },
+  });
+
+  if (!user) {
+    return userNotFound(userName);
+  }
+
+  return "User logged off.";
+};
+
+function userNotFound(userName: string) {
+  return `User with userName ${userName} not found.`;
+}

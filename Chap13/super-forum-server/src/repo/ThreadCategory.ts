@@ -18,7 +18,6 @@ export class ThreadCategory extends Auditable {
   @Column("varchar", {
     name: "Description",
     length: 150,
-    unique: true,
     nullable: true,
   })
   description: string;
