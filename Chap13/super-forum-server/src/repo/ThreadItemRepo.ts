@@ -1,5 +1,5 @@
 import { isThreadBodyValid } from "../common/validators/ThreadValidators";
-import { QueryArrayResult, QueryOneResult } from "./QueryArrayResult";
+import { QueryArrayResult } from "./QueryArrayResult";
 import { ThreadItem } from "./ThreadItem";
 import { User } from "./User";
 import { Thread } from "./Thread";
@@ -47,21 +47,6 @@ export const createThreadItem = async (
 
   return {
     messages: ["ThreadItem created successfully."],
-  };
-};
-
-export const getThreadItemById = async (
-  id: string
-): Promise<QueryOneResult<ThreadItem>> => {
-  const threadItem = await ThreadItem.findOne({ id });
-  if (!threadItem) {
-    return {
-      messages: ["ThreadItem not found."],
-    };
-  }
-
-  return {
-    entity: threadItem,
   };
 };
 
