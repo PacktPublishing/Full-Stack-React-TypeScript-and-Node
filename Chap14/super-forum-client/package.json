@@ -1,0 +1,65 @@
+{
+  "name": "super-forum-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/is-hotkey": "^0.1.1",
+    "@types/jest": "^24.9.1",
+    "@types/lodash": "^4.14.160",
+    "@types/moment": "^2.13.0",
+    "@types/node": "^12.12.54",
+    "@types/react": "^16.9.46",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/redux": "^3.6.0",
+    "@types/slate": "^0.47.7",
+    "@types/slate-react": "^0.22.9",
+    "emotion": "^10.0.27",
+    "is-hotkey": "^0.1.6",
+    "lodash": "^4.17.20",
+    "moment": "^2.27.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-dropdown": "^1.8.0",
+    "react-modal": "^3.11.2",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.2",
+    "redux": "^4.0.5",
+    "slate": "^0.58.4",
+    "slate-history": "^0.58.4",
+    "slate-react": "^0.58.4",
+    "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-modal": "^3.10.6"
+  }
+}

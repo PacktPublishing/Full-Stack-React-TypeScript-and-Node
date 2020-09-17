@@ -1,0 +1,78 @@
+.thread-nav-container {
+  margin-top: 0;
+}
+
+.thread-content-container {
+  display: grid;
+  grid-template-columns: 1fr 4em;
+  grid-template-rows: 1fr auto;
+  margin-top: 0.75em;
+}
+
+.thread-content-points-container {
+  grid-column: 2;
+  grid-row: 1;
+  border: solid 1px var(--border-color);
+  margin-right: 1em;
+  padding-bottom: 1em;
+}
+.thread-content-points-container > div {
+  height: 100%;
+}
+
+.thread-content-post-container {
+  grid-column: 1;
+  grid-row: 1;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.thread-content-response-container {
+  grid-column: 1;
+  grid-row: 2;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.thread-header-container {
+  border-bottom: var(--input-border);
+  padding-bottom: 0.75em;
+}
+
+.thread-category-container {
+  margin-top: 0.75em;
+}
+
+.thread-category-dropdown {
+  margin-top: 1em;
+  max-width: 12em;
+}
+
+.thread-title-container {
+  margin-top: 0.75em;
+}
+
+.thread-body-container {
+  margin-top: 1em;
+}
+
+.thread-body-editor {
+  margin-top: 0.5em;
+  border: solid 1px var(--proceed-color);
+  padding: 0.5em 1em 0.5em 1em;
+}
+
+.thread-section-divider {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+@media screen and (orientation: portrait) and (max-width: 768px) {
+  .thread-content-container {
+    grid-template-columns: 1fr;
+  }
+
+  .thread-content-points-container {
+    display: none;
+  }
+}
