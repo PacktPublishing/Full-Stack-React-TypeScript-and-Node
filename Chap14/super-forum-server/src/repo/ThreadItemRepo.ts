@@ -1,5 +1,5 @@
 import { isThreadBodyValid } from "../common/validators/ThreadValidators";
-import { QueryArrayResult } from "./QueryArrayResult";
+import { QueryArrayResult, QueryOneResult } from "./QueryArrayResult";
 import { ThreadItem } from "./ThreadItem";
 import { User } from "./User";
 import { Thread } from "./Thread";
@@ -8,7 +8,7 @@ export const createThreadItem = async (
   userId: string | undefined | null,
   threadId: string,
   body: string
-): Promise<QueryArrayResult<ThreadItem>> => {
+): Promise<QueryOneResult<ThreadItem>> => {
   const bodyMsg = isThreadBodyValid(body);
   if (bodyMsg) {
     return {

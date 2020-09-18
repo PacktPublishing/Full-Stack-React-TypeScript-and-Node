@@ -1,6 +1,11 @@
 import { IResolvers } from "apollo-server-express";
 import { QueryArrayResult, QueryOneResult } from "../repo/QueryArrayResult";
 import { Thread } from "../repo/Thread";
+import { ThreadItem } from "../repo/ThreadItem";
+import {
+  createThreadItem,
+  getThreadItemsByThreadId,
+} from "../repo/ThreadItemRepo";
 import {
   createThread,
   getThreadById,
@@ -10,6 +15,7 @@ import { User } from "../repo/User";
 import { register, UserResult } from "../repo/UserRepo";
 import { GqlContext } from "./GqlContext";
 
+const STANDARD_ERROR = "An error has occurred";
 interface EntityResult {
   messages: Array<string>;
 }
@@ -32,6 +38,14 @@ const resolvers: IResolvers = {
       return "ThreadArray";
     },
   },
+  ThreadItemArrayResult: {
+    __resolveType(obj: any, context: GqlContext, info: any) {
+      if (obj.messages) {
+        return "EntityResult";
+      }
+      return "ThreadItemArray";
+    },
+  },
   Query: {
     getThreadById: async (
       obj: any,
@@ -47,9 +61,7 @@ const resolvers: IResolvers = {
           return thread.entity;
         }
         return {
-          messages: thread.messages
-            ? thread.messages
-            : ["An error has occurred"],
+          messages: thread.messages ? thread.messages : [STANDARD_ERROR],
         };
       } catch (ex) {
         throw ex;
@@ -70,9 +82,30 @@ const resolvers: IResolvers = {
           };
         }
         return {
-          messages: threads.messages
-            ? threads.messages
-            : ["An error has occurred"],
+          messages: threads.messages ? threads.messages : [STANDARD_ERROR],
+        };
+      } catch (ex) {
+        throw ex;
+      }
+    },
+    getThreadItemByThreadId: async (
+      obj: any,
+      args: { threadId: string },
+      ctx: GqlContext,
+      info: any
+    ): Promise<{ threadItems: Array<ThreadItem> } | EntityResult> => {
+      let threadItems: QueryArrayResult<ThreadItem>;
+      try {
+        threadItems = await getThreadItemsByThreadId(args.threadId);
+        if (threadItems.entities) {
+          return {
+            threadItems: threadItems.entities,
+          };
+        }
+        return {
+          messages: threadItems.messages
+            ? threadItems.messages
+            : [STANDARD_ERROR],
         };
       } catch (ex) {
         throw ex;
@@ -95,9 +128,24 @@ const resolvers: IResolvers = {
           args.body
         );
         return {
-          messages: result.messages
-            ? result.messages
-            : ["An error has occurred"],
+          messages: result.messages ? result.messages : [STANDARD_ERROR],
+        };
+      } catch (ex) {
+        console.log(ex);
+        throw ex;
+      }
+    },
+    createThreadItem: async (
+      obj: any,
+      args: { userId: string; threadId: string; body: string },
+      ctx: GqlContext,
+      info: any
+    ): Promise<EntityResult> => {
+      let result: QueryOneResult<ThreadItem>;
+      try {
+        result = await createThreadItem(args.userId, args.threadId, args.body);
+        return {
+          messages: result.messages ? result.messages : [STANDARD_ERROR],
         };
       } catch (ex) {
         console.log(ex);
@@ -109,15 +157,19 @@ const resolvers: IResolvers = {
       args: { email: string; userName: string; password: string },
       ctx: GqlContext,
       info: any
-    ): Promise<User | undefined> => {
+    ): Promise<User | EntityResult> => {
       let user: UserResult;
       try {
         user = await register(args.email, args.userName, args.password);
         if (user && user.user) {
           return user.user;
         }
-      } catch (ex) {}
-      return undefined;
+        return {
+          messages: user.messages ? user.messages : [STANDARD_ERROR],
+        };
+      } catch (ex) {
+        throw ex;
+      }
     },
   },
 };

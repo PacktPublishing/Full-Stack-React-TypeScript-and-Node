@@ -44,6 +44,11 @@ const typeDefs = gql`
     thread: Thread!
     createdOn: Date!
   }
+  union ThreadItemResult = ThreadItem | EntityResult
+  type ThreadItemArray {
+    threadItems: [ThreadItem!]
+  }
+  union ThreadItemArrayResult = ThreadItemArray | EntityResult
 
   type ThreadCategory {
     id: ID!
@@ -55,6 +60,7 @@ const typeDefs = gql`
   type Query {
     getThreadById(id: ID!): ThreadResult
     getThreadsByCategoryId(categoryId: ID!): ThreadArrayResult!
+    getThreadItemByThreadId(threadId: ID!): ThreadItemArrayResult!
   }
 
   type Mutation {
@@ -64,6 +70,7 @@ const typeDefs = gql`
       title: String!
       body: String!
     ): EntityResult
+    createThreadItem(userId: ID!, threadId: ID!, body: String): EntityResult
     register(email: String!, userName: String!, password: String!): User
   }
 `;

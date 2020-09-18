@@ -8,7 +8,6 @@ import bodyParser from "body-parser";
 import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
 import typeDefs from "./gql/typeDefs";
 import resolvers from "./gql/resolvers";
-import { getTimePastIfLessThanDay } from "./common/dates";
 require("dotenv").config();
 
 const main = async () => {
@@ -94,17 +93,6 @@ const main = async () => {
       } else {
         next();
       }
-    } catch (ex) {
-      console.log(ex);
-      res.send(ex.message);
-    }
-  });
-
-  router.get("/testdate", async (req, res, next) => {
-    try {
-      const compTime = new Date(new Date().getTime() - 61 * (24 * 60000));
-      const result = getTimePastIfLessThanDay(compTime);
-      res.send(result);
     } catch (ex) {
       console.log(ex);
       res.send(ex.message);
