@@ -5,18 +5,10 @@ import Redis from "ioredis";
 import { createConnection } from "typeorm";
 import { register, login, logout } from "./repo/UserRepo";
 import bodyParser from "body-parser";
-import {
-  createThread,
-  getThreadById,
-  getThreadsByCategoryId,
-} from "./repo/ThreadRepo";
-import {
-  createThreadItem,
-  getThreadItemsByThreadId,
-} from "./repo/ThreadItemRepo";
 import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
 import typeDefs from "./gql/typeDefs";
 import resolvers from "./gql/resolvers";
+import { getTimePastIfLessThanDay } from "./common/dates";
 require("dotenv").config();
 
 const main = async () => {
@@ -108,85 +100,11 @@ const main = async () => {
     }
   });
 
-  router.post("/createthread", async (req, res, next) => {
+  router.get("/testdate", async (req, res, next) => {
     try {
-      console.log("userId", req.session);
-      console.log("body", req.body);
-      const msg = await createThread(
-        req.session!.userId, // notice this is from session!
-        req.body.categoryId,
-        req.body.title,
-        req.body.body
-      );
-
-      res.send(msg);
-    } catch (ex) {
-      console.log(ex);
-      res.send(ex.message);
-    }
-  });
-  router.post("/thread", async (req, res, next) => {
-    try {
-      const threadResult = await getThreadById(req.body.id);
-
-      if (threadResult && threadResult.entity) {
-        res.send(threadResult.entity.title);
-      } else if (threadResult && threadResult.messages) {
-        res.send(threadResult.messages[0]);
-      }
-    } catch (ex) {
-      console.log(ex);
-      res.send(ex.message);
-    }
-  });
-  router.post("/threadsbycategory", async (req, res, next) => {
-    try {
-      const threadResult = await getThreadsByCategoryId(req.body.categoryId);
-
-      if (threadResult && threadResult.entities) {
-        let items = "";
-        threadResult.entities.forEach((th) => {
-          items += th.title + ", ";
-        });
-        res.send(items);
-      } else if (threadResult && threadResult.messages) {
-        res.send(threadResult.messages[0]);
-      }
-    } catch (ex) {
-      console.log(ex);
-      res.send(ex.message);
-    }
-  });
-
-  router.post("/createthreaditem", async (req, res, next) => {
-    try {
-      const msg = await createThreadItem(
-        req.session!.userId, // notice this is from session!
-        req.body.threadId,
-        req.body.body
-      );
-
-      res.send(msg);
-    } catch (ex) {
-      console.log(ex);
-      res.send(ex.message);
-    }
-  });
-  router.post("/threadsitemsbythread", async (req, res, next) => {
-    try {
-      const threadItemResult = await getThreadItemsByThreadId(
-        req.body.threadId
-      );
-
-      if (threadItemResult && threadItemResult.entities) {
-        let items = "";
-        threadItemResult.entities.forEach((ti) => {
-          items += ti.body + ", ";
-        });
-        res.send(items);
-      } else if (threadItemResult && threadItemResult.messages) {
-        res.send(threadItemResult.messages[0]);
-      }
+      const compTime = new Date(new Date().getTime() - 61 * (24 * 60000));
+      const result = getTimePastIfLessThanDay(compTime);
+      res.send(result);
     } catch (ex) {
       console.log(ex);
       res.send(ex.message);
