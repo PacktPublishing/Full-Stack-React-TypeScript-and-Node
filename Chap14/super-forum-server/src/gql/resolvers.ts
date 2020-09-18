@@ -1,6 +1,8 @@
 import { IResolvers } from "apollo-server-express";
 import { QueryArrayResult, QueryOneResult } from "../repo/QueryArrayResult";
 import { Thread } from "../repo/Thread";
+import { ThreadCategory } from "../repo/ThreadCategory";
+import { getAllCategories } from "../repo/ThreadCategoryRepo";
 import { ThreadItem } from "../repo/ThreadItem";
 import {
   createThreadItem,
@@ -105,6 +107,27 @@ const resolvers: IResolvers = {
         return {
           messages: threadItems.messages
             ? threadItems.messages
+            : [STANDARD_ERROR],
+        };
+      } catch (ex) {
+        throw ex;
+      }
+    },
+    getAllCategories: async (
+      obj: any,
+      args: null,
+      ctx: GqlContext,
+      info: any
+    ): Promise<Array<ThreadCategory> | EntityResult> => {
+      let categories: QueryArrayResult<ThreadCategory>;
+      try {
+        categories = await getAllCategories();
+        if (categories.entities) {
+          return categories.entities;
+        }
+        return {
+          messages: categories.messages
+            ? categories.messages
             : [STANDARD_ERROR],
         };
       } catch (ex) {
