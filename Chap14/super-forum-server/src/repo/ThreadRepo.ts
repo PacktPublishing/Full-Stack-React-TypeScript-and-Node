@@ -12,7 +12,7 @@ export const createThread = async (
   categoryId: string,
   title: string,
   body: string
-): Promise<QueryArrayResult<Thread>> => {
+): Promise<QueryOneResult<Thread>> => {
   const titleMsg = isThreadTitleValid(title);
   if (titleMsg) {
     return {
@@ -85,7 +85,7 @@ export const getThreadsByCategoryId = async (
     .orderBy("thread.createdOn", "DESC")
     .getMany();
 
-  if (!threads) {
+  if (!threads || threads.length === 0) {
     return {
       messages: ["Threads of category not found."],
     };

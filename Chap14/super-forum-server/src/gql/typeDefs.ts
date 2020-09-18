@@ -3,8 +3,8 @@ import { gql } from "apollo-server-express";
 const typeDefs = gql`
   scalar Date
 
-  type EntityError {
-    message: String!
+  type EntityResult {
+    messages: [String!]
   }
 
   type User {
@@ -29,7 +29,11 @@ const typeDefs = gql`
     createdOn: Date!
     category: ThreadCategory!
   }
-  union ThreadResult = Thread | EntityError
+  union ThreadResult = Thread | EntityResult
+  type ThreadArray {
+    threads: [Thread!]
+  }
+  union ThreadArrayResult = ThreadArray | EntityResult
 
   type ThreadItem {
     id: ID!
@@ -50,9 +54,16 @@ const typeDefs = gql`
 
   type Query {
     getThreadById(id: ID!): ThreadResult
+    getThreadsByCategoryId(categoryId: ID!): ThreadArrayResult!
   }
 
   type Mutation {
+    createThread(
+      userId: ID!
+      categoryId: ID!
+      title: String!
+      body: String!
+    ): EntityResult
     register(email: String!, userName: String!, password: String!): User
   }
 `;
