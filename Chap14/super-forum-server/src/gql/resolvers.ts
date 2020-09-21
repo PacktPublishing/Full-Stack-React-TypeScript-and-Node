@@ -4,16 +4,17 @@ import { Thread } from "../repo/Thread";
 import { ThreadCategory } from "../repo/ThreadCategory";
 import { getAllCategories } from "../repo/ThreadCategoryRepo";
 import { ThreadItem } from "../repo/ThreadItem";
+import { updateThreadItemPoint } from "../repo/ThreadItemPointRepo";
 import {
   createThreadItem,
   getThreadItemsByThreadId,
 } from "../repo/ThreadItemRepo";
+import { updateThreadPoint } from "../repo/ThreadPointRepo";
 import {
   createThread,
   getThreadById,
   getThreadsByCategoryId,
 } from "../repo/ThreadRepo";
-import { User } from "../repo/User";
 import { register, UserResult } from "../repo/UserRepo";
 import { GqlContext } from "./GqlContext";
 
@@ -183,21 +184,55 @@ const resolvers: IResolvers = {
         throw ex;
       }
     },
+    updateThreadPoint: async (
+      obj: any,
+      args: { userId: string; threadId: string; increment: boolean },
+      ctx: GqlContext,
+      info: any
+    ): Promise<string> => {
+      let result = "";
+      try {
+        result = await updateThreadPoint(
+          args.userId,
+          args.threadId,
+          args.increment
+        );
+        return result;
+      } catch (ex) {
+        throw ex;
+      }
+    },
+    updateThreadItemPoint: async (
+      obj: any,
+      args: { userId: string; threadItemId: string; increment: boolean },
+      ctx: GqlContext,
+      info: any
+    ): Promise<string> => {
+      let result = "";
+      try {
+        result = await updateThreadItemPoint(
+          args.userId,
+          args.threadItemId,
+          args.increment
+        );
+        return result;
+      } catch (ex) {
+        throw ex;
+      }
+    },
     register: async (
       obj: any,
       args: { email: string; userName: string; password: string },
       ctx: GqlContext,
       info: any
-    ): Promise<User | EntityResult> => {
+    ): Promise<string> => {
       let user: UserResult;
       try {
         user = await register(args.email, args.userName, args.password);
         if (user && user.user) {
-          return user.user;
+          return "Registration successful.";
         }
-        return {
-          messages: user.messages ? user.messages : [STANDARD_ERROR],
-        };
+        return user && user.messages ? user.messages[0] : STANDARD_ERROR;
       } catch (ex) {
         throw ex;
       }
