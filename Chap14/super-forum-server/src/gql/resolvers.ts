@@ -32,6 +32,14 @@ const resolvers: IResolvers = {
       return "Thread";
     },
   },
+  ThreadItemResult: {
+    __resolveType(obj: any, context: GqlContext, info: any) {
+      if (obj.messages) {
+        return "EntityResult";
+      }
+      return "ThreadItem";
+    },
+  },
   ThreadArrayResult: {
     __resolveType(obj: any, context: GqlContext, info: any) {
       if (obj.messages) {
