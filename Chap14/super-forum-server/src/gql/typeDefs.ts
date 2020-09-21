@@ -16,6 +16,10 @@ const typeDefs = gql`
     isDisabled: Boolean!
     threads: [Thread!]
     threadItems: [ThreadItem!]
+    createdBy: String!
+    createdOn: Date!
+    lastModifiedBy: String!
+    lastModifiedOn: Date!
   }
 
   type Thread {
@@ -26,8 +30,11 @@ const typeDefs = gql`
     body: String!
     user: User!
     threadItems: [ThreadItem!]
-    createdOn: Date!
     category: ThreadCategory!
+    createdBy: String!
+    createdOn: Date!
+    lastModifiedBy: String!
+    lastModifiedOn: Date!
   }
   union ThreadResult = Thread | EntityResult
   type ThreadArray {
@@ -42,7 +49,10 @@ const typeDefs = gql`
     body: String!
     user: User!
     thread: Thread!
+    createdBy: String!
     createdOn: Date!
+    lastModifiedBy: String!
+    lastModifiedOn: Date!
   }
   union ThreadItemResult = ThreadItem | EntityResult
   type ThreadItemArray {
@@ -55,6 +65,32 @@ const typeDefs = gql`
     name: String!
     description: String
     threads: [Thread!]!
+    createdBy: String!
+    createdOn: Date!
+    lastModifiedBy: String!
+    lastModifiedOn: Date!
+  }
+
+  type ThreadPoint {
+    id: ID!
+    isDecrement: Boolean!
+    user: User!
+    thread: Thread!
+    createdBy: String!
+    createdOn: Date!
+    lastModifiedBy: String!
+    lastModifiedOn: Date!
+  }
+
+  type ThreadItemPoint {
+    id: ID!
+    isDecrement: Boolean!
+    user: User!
+    threadItem: ThreadItem!
+    createdBy: String!
+    createdOn: Date!
+    lastModifiedBy: String!
+    lastModifiedOn: Date!
   }
 
   type Query {
