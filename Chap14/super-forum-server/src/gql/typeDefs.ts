@@ -96,6 +96,7 @@ const typeDefs = gql`
   type Query {
     getThreadById(id: ID!): ThreadResult
     getThreadsByCategoryId(categoryId: ID!): ThreadArrayResult!
+    getThreadsLatest: ThreadArrayResult!
     getThreadItemByThreadId(threadId: ID!): ThreadItemArrayResult!
     getAllCategories: [ThreadCategory!]
     me: UserResult!

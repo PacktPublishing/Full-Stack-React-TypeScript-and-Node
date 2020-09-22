@@ -12,6 +12,7 @@ require("dotenv").config();
 
 const main = async () => {
   const app = express();
+  console.log("client url", process.env.CLIENT_URL);
   app.use(
     cors({
       credentials: true,
