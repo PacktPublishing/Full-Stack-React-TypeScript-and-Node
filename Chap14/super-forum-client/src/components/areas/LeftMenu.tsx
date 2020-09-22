@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 import "./LeftMenu.css";
 import { gql, useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 const GetAllCategories = gql`
   query getAllCategories {
@@ -28,7 +29,11 @@ const LeftMenu = () => {
     } else {
       if (data && data.getAllCategories) {
         const cats = data.getAllCategories.map((cat: any) => {
-          return <li key={cat.id}>{cat.name}</li>;
+          return (
+            <li key={cat.id}>
+              <Link to={`/categorythreads/${cat.id}`}>{cat.name}</Link>
+            </li>
+          );
         });
         setCategories(<ul className="category">{cats}</ul>);
       }
