@@ -7,10 +7,17 @@ import bodyParser from "body-parser";
 import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
 import typeDefs from "./gql/typeDefs";
 import resolvers from "./gql/resolvers";
+import cors from "cors";
 require("dotenv").config();
 
 const main = async () => {
   const app = express();
+  app.use(
+    cors({
+      credentials: true,
+      origin: process.env.CLIENT_URL,
+    })
+  );
   const router = express.Router();
 
   await createConnection();
@@ -42,10 +49,6 @@ const main = async () => {
   );
 
   app.use(router);
-  router.get("/", (req, res, next) => {
-    req.session!.test = "hello";
-    res.send("hello");
-  });
 
   const schema = makeExecutableSchema({ typeDefs, resolvers });
   const apolloServer = new ApolloServer({
