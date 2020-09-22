@@ -25,6 +25,7 @@ const Main = () => {
         setThreadCards(cards);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId]);
 
   return (

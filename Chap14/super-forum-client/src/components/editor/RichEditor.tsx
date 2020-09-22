@@ -50,6 +50,7 @@ const RichEditor: FC<RichEditorProps> = ({ existingBody }) => {
         },
       ]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onChangeEditorValue = (val: Node[]) => {

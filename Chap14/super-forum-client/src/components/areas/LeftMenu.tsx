@@ -1,27 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
-import { getCategories } from "../../services/DataService";
-import Category from "../../models/Category";
 import "./LeftMenu.css";
+import { gql, useQuery } from "@apollo/client";
+
+const GetAllCategories = gql`
+  query getAllCategories {
+    getAllCategories {
+      id
+      name
+    }
+  }
+`;
 
 const LeftMenu = () => {
+  const { loading, error, data } = useQuery(GetAllCategories);
   const { width } = useWindowDimensions();
   const [categories, setCategories] = useState<JSX.Element>(
     <div>Left Menu</div>
   );
 
   useEffect(() => {
-    getCategories()
-      .then((categories: Array<Category>) => {
-        const cats = categories.map((cat) => {
+    if (loading) {
+      setCategories(<span>Loading ...</span>);
+    } else if (error) {
+      console.log("getAllCategories", error);
+      setCategories(<span>Error occurred loading categories ...</span>);
+    } else {
+      if (data && data.getAllCategories) {
+        const cats = data.getAllCategories.map((cat: any) => {
           return <li key={cat.id}>{cat.name}</li>;
         });
         setCategories(<ul className="category">{cats}</ul>);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   if (width <= 768) {
     return null;
