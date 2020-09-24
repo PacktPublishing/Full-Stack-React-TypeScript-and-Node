@@ -107,6 +107,9 @@ const Main = () => {
       setCategory(threads[0].category);
 
       setThreadCards(cards);
+    } else {
+      setCategory(undefined);
+      setThreadCards(null);
     }
   }, [threadsByCatData]);
 
