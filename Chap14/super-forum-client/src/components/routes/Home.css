@@ -16,23 +16,22 @@
   min-height: var(--min-screen-height);
   grid-area: sidebar;
   background-color: aliceblue;
+  border-top: var(--border);
+  border-right: var(--border);
 }
 
 .leftmenu {
   grid-area: leftmenu;
-  background-color: skyblue;
 }
 
 .content {
   min-height: var(--min-screen-height);
   grid-area: content;
-  background-color: blanchedalmond;
   padding: 0.5em 0.75em 0.5em 0.75em;
 }
 
 .rightmenu {
   grid-area: rightmenu;
-  background-color: coral;
 }
 
 @media screen and (orientation: portrait) and (max-width: 768px) {

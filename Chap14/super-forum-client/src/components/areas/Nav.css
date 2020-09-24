@@ -1,9 +1,9 @@
 nav {
-  background-color: aqua;
   padding-top: 0.75em;
   padding-bottom: 0.75em;
   padding-left: 1em;
   padding-right: 1em;
+  border-bottom: var(--border);
 }
 
 .nav-mobile-menu {
