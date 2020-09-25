@@ -92,7 +92,12 @@ export const logout = async (userName: string): Promise<string> => {
 export const me = async (id: string): Promise<UserResult> => {
   const user = await User.findOne({
     where: { id },
-    relations: ["threads", "threads.threadItems", "threadItems"],
+    relations: [
+      "threads",
+      "threads.threadItems",
+      "threadItems",
+      "threadItems.thread",
+    ],
   });
 
   if (!user) {
@@ -119,7 +124,6 @@ export const changePassword = async (
 ): Promise<string> => {
   const user = await User.findOne({
     where: { id },
-    relations: ["threads", "threads.threadItems", "threadItems"],
   });
 
   if (!user) {
