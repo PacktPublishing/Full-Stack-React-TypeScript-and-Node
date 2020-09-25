@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../../store/AppState";
 import Thread from "../../../models/Thread";
 import { Link } from "react-router-dom";
-import ThreadItem from "../../../models/ThreadItem";
 import { gql, useMutation } from "@apollo/client";
 
 const ChangePassword = gql`
@@ -55,9 +54,9 @@ const UserProfile = () => {
         )
       );
 
-      const threadItemList = user.threadItems?.map((ti: ThreadItem) => (
+      const threadItemList = user.threadItems?.map((ti: any) => (
         <li key={`user-ti-${ti.id}`}>
-          <Link to={`/thread/${ti.threadId}`} className="userprofile-link">
+          <Link to={`/thread/${ti.thread?.id}`} className="userprofile-link">
             {ti.body.length <= 40 ? ti.body : ti.body.substring(0, 40) + " ..."}
           </Link>
         </li>

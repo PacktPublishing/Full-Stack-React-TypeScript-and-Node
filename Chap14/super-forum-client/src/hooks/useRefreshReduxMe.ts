@@ -17,6 +17,9 @@ export const Me = gql`
         }
         threadItems {
           id
+          thread {
+            id
+          }
           body
         }
       }
