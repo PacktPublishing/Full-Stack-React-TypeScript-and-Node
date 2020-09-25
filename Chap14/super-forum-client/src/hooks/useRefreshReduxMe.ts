@@ -14,10 +14,10 @@ export const Me = gql`
         threads {
           id
           title
-          threadItems {
-            id
-            body
-          }
+        }
+        threadItems {
+          id
+          body
         }
       }
     }
