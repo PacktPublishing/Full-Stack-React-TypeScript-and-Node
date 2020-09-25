@@ -9,6 +9,13 @@ import { getUserThreads } from "../../../services/DataService";
 import Thread from "../../../models/Thread";
 import { Link } from "react-router-dom";
 import ThreadItem from "../../../models/ThreadItem";
+import { gql, useMutation } from "@apollo/client";
+
+const ChangePassword = gql`
+  mutation ChangePassword($newPassword: String!) {
+    changePassword(newPassword: $newPassword)
+  }
+`;
 
 const UserProfile = () => {
   const [
@@ -24,6 +31,7 @@ const UserProfile = () => {
   const user = useSelector((state: AppState) => state.user);
   const [threads, setThreads] = useState<JSX.Element | undefined>();
   const [threadItems, setThreadItems] = useState<JSX.Element | undefined>();
+  const [execChangePassword] = useMutation(ChangePassword);
 
   useEffect(() => {
     console.log("user", user);
@@ -62,6 +70,22 @@ const UserProfile = () => {
     }
   }, [user]);
 
+  const onClickChangePassword = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    const { data: changePasswordData } = await execChangePassword({
+      variables: {
+        newPassword: password,
+      },
+    });
+    dispatch({
+      type: "resultMsg",
+      payload: changePasswordData ? changePasswordData.changePassword : "",
+    });
+    console.log("changePasswordData", changePasswordData);
+  };
+
   return (
     <div className="screen-root-container">
       <div className="thread-nav-container">
@@ -79,7 +103,11 @@ const UserProfile = () => {
               password={password}
               passwordConfirm={passwordConfirm}
             />
-            <button className="action-btn" disabled={isSubmitDisabled}>
+            <button
+              className="action-btn"
+              disabled={isSubmitDisabled}
+              onClick={onClickChangePassword}
+            >
               Change Password
             </button>
           </div>
