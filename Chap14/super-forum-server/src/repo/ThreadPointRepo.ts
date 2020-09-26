@@ -37,7 +37,7 @@ export const updateThreadPoint = async (
           await ThreadPoint.remove(existingPoint);
           thread!.points = Number(thread!.points) + 1;
           thread!.lastModifiedOn = new Date();
-          thread!.save();
+          await thread!.save();
         }
       } else {
         if (!existingPoint.isDecrement) {
@@ -45,7 +45,7 @@ export const updateThreadPoint = async (
           await ThreadPoint.remove(existingPoint);
           thread!.points = Number(thread!.points) - 1;
           thread!.lastModifiedOn = new Date();
-          thread!.save();
+          await thread!.save();
         }
       }
     } else {
@@ -61,7 +61,7 @@ export const updateThreadPoint = async (
         thread!.points = Number(thread!.points) - 1;
       }
       thread!.lastModifiedOn = new Date();
-      thread!.save();
+      await thread!.save();
     }
 
     message = `Successfully ${

@@ -5,6 +5,7 @@ import {
 import { QueryArrayResult, QueryOneResult } from "./QueryArrayResult";
 import { Thread } from "./Thread";
 import { ThreadCategory } from "./ThreadCategory";
+import { ThreadItem } from "./ThreadItem";
 import { User } from "./User";
 
 export const createThread = async (
@@ -76,6 +77,15 @@ export const getThreadById = async (
     };
   }
 
+  // extra sort
+  if (thread.threadItems) {
+    thread.threadItems.sort((a: ThreadItem, b: ThreadItem) => {
+      if (a.createdOn > b.createdOn) return -1;
+      if (a.createdOn < b.createdOn) return 1;
+      return 0;
+    });
+  }
+  console.log("getThreadById thread.threadItems", thread.threadItems);
   return {
     entity: thread,
   };
