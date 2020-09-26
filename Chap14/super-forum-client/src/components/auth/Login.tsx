@@ -25,7 +25,7 @@ const Login: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
     dispatch,
   ] = useReducer(userReducer, {
     userName: "test1",
-    password: "Test123!@#",
+    password: "Test123$%^",
     resultMsg: "",
     isSubmitDisabled: false,
   });

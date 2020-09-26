@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import ThreadItem from "../../../models/ThreadItem";
+import { AppState } from "../../../store/AppState";
 import ThreadResponse from "./ThreadResponse";
 
 interface ThreadResponsesBuilderProps {
@@ -13,6 +15,7 @@ const ThreadResponsesBuilder: FC<ThreadResponsesBuilderProps> = ({
   readOnly,
   refreshThread,
 }) => {
+  const user = useSelector((state: AppState) => state.user);
   const [responseElements, setResponseElements] = useState<
     JSX.Element | undefined
   >();
@@ -29,7 +32,7 @@ const ThreadResponsesBuilder: FC<ThreadResponsesBuilderProps> = ({
               lastModifiedOn={ti.createdOn}
               points={ti.points}
               readOnly={readOnly}
-              userId={ti?.user.id || "0"}
+              userId={user?.id || "0"}
               threadItemId={ti?.id || "0"}
               refreshThread={refreshThread}
             />
