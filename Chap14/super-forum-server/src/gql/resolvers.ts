@@ -43,10 +43,8 @@ const resolvers: IResolvers = {
   ThreadResult: {
     __resolveType(obj: any, context: GqlContext, info: any) {
       if (obj.messages) {
-        console.log("EntityResult");
         return "EntityResult";
       }
-      console.log("Thread");
       return "Thread";
     },
   },
@@ -81,10 +79,10 @@ const resolvers: IResolvers = {
       ctx: GqlContext,
       info: any
     ): Promise<Thread | EntityResult> => {
+      console.log("getThreadById");
       let thread: QueryOneResult<Thread>;
       try {
         thread = await getThreadById(args.id);
-        console.log("id", thread?.entity?.id);
         if (thread.entity) {
           return thread.entity;
         }
@@ -92,6 +90,7 @@ const resolvers: IResolvers = {
           messages: thread.messages ? thread.messages : [STANDARD_ERROR],
         };
       } catch (ex) {
+        console.log(ex.message);
         throw ex;
       }
     },
@@ -189,13 +188,11 @@ const resolvers: IResolvers = {
     ): Promise<User | EntityResult> => {
       let user: UserResult;
       try {
-        console.log("session", ctx.req.session);
         if (!ctx.req.session?.userId) {
           return {
             messages: ["User not logged in."],
           };
         }
-        console.log("userId", ctx.req.session.userId);
         user = await me(ctx.req.session.userId);
         if (user && user.user) {
           return user.user;
@@ -312,7 +309,7 @@ const resolvers: IResolvers = {
         user = await login(args.userName, args.password);
         if (user && user.user) {
           ctx.req.session!.userId = user.user.id;
-          console.log("session", ctx.req.session);
+
           return `Login successful for userId ${ctx.req.session!.userId}.`;
         }
         return user && user.messages ? user.messages[0] : STANDARD_ERROR;
@@ -354,7 +351,7 @@ const resolvers: IResolvers = {
           ctx.req.session!.userId,
           args.newPassword
         );
-        console.log(result);
+
         return result;
       } catch (ex) {
         throw ex;

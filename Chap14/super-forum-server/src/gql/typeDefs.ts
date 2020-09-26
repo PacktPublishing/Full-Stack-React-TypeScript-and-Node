@@ -26,6 +26,7 @@ const typeDefs = gql`
   type Thread {
     id: ID!
     views: Int!
+    points: Int!
     isDisabled: Boolean!
     title: String!
     body: String!
@@ -46,6 +47,7 @@ const typeDefs = gql`
   type ThreadItem {
     id: ID!
     views: Int!
+    points: Int!
     isDisabled: Boolean!
     body: String!
     user: User!
