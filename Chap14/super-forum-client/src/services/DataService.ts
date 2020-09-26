@@ -1,6 +1,9 @@
 import Category from "../models/Category";
 import CategoryThread from "../models/CategoryThread";
 import Thread from "../models/Thread";
+import User from "../models/User";
+
+const user = new User("1", "test1@test.com", "test1");
 
 export async function getCategories(): Promise<Array<Category>> {
   const promise = new Promise<Array<Category>>((res, rej) => {
@@ -35,8 +38,7 @@ export async function getThreadsByCategory(
         title: "Thread 1",
         body:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        userName: "dave",
-        userId: "1",
+        user,
         points: 11,
         createdOn: new Date(),
         lastModifiedOn: new Date(),
@@ -46,8 +48,7 @@ export async function getThreadsByCategory(
             views: 22,
             points: 2,
             body: "ThreadItem 1",
-            userName: "jon",
-            userId: "2",
+            user,
             createdOn: new Date(),
             threadId: "1",
           },
@@ -60,8 +61,7 @@ export async function getThreadsByCategory(
         title: "Thread 2",
         body:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        userName: "tim",
-        userId: "2",
+        user,
         points: 55,
         createdOn: new Date(),
         lastModifiedOn: new Date(),
@@ -71,8 +71,7 @@ export async function getThreadsByCategory(
             views: 22,
             points: 2,
             body: "ThreadItem 1",
-            userName: "jon",
-            userId: "2",
+            user,
             createdOn: new Date(),
             threadId: "2",
           },
@@ -154,8 +153,7 @@ export async function getThreadById(Id: string): Promise<Thread> {
         title: "Thread 1",
         body:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        userName: "dave",
-        userId: "1",
+        user,
         points: 11,
         createdOn: new Date(),
         lastModifiedOn: new Date(),
@@ -165,8 +163,7 @@ export async function getThreadById(Id: string): Promise<Thread> {
             views: 22,
             points: 2,
             body: "ThreadItem 1",
-            userName: "jon",
-            userId: "2",
+            user,
             createdOn: new Date(),
             threadId: "1",
           },
@@ -175,8 +172,7 @@ export async function getThreadById(Id: string): Promise<Thread> {
             views: 11,
             points: 14,
             body: "ThreadItem 2",
-            userName: "linda",
-            userId: "4",
+            user,
             createdOn: new Date(),
             threadId: "1",
           },
@@ -200,8 +196,7 @@ export async function getUserThreads(id: string): Promise<Array<Thread>> {
         title: "Thread 1",
         body:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        userName: "dave",
-        userId: "1",
+        user,
         points: 11,
         createdOn: new Date(),
         lastModifiedOn: new Date(),
@@ -211,8 +206,7 @@ export async function getUserThreads(id: string): Promise<Array<Thread>> {
             views: 22,
             points: 2,
             body: "ThreadItem 1",
-            userName: "jon",
-            userId: "2",
+            user,
             createdOn: new Date(),
             threadId: "1",
           },
@@ -225,8 +219,7 @@ export async function getUserThreads(id: string): Promise<Array<Thread>> {
         title: "Thread 2",
         body:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        userName: "tim",
-        userId: "2",
+        user,
         points: 55,
         createdOn: new Date(),
         lastModifiedOn: new Date(),
@@ -236,8 +229,7 @@ export async function getUserThreads(id: string): Promise<Array<Thread>> {
             views: 22,
             points: 2,
             body: "ThreadItem 1",
-            userName: "jon",
-            userId: "2",
+            user,
             createdOn: new Date(),
             threadId: "2",
           },

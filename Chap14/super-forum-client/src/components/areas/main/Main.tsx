@@ -18,6 +18,10 @@ const GetThreadsByCategoryId = gql`
           title
           body
           views
+          points
+          user {
+            userName
+          }
           threadItems {
             id
           }
@@ -43,6 +47,10 @@ const GetThreadsLatest = gql`
           title
           body
           views
+          points
+          user {
+            userName
+          }
           threadItems {
             id
           }

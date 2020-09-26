@@ -6,7 +6,7 @@ export default class User {
     public id: string,
     public email: string,
     public userName: string,
-    public threads: Array<Thread>,
-    public threadItems: Array<ThreadItem>
+    public threads?: Array<Thread>,
+    public threadItems?: Array<ThreadItem>
   ) {}
 }
