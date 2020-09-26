@@ -45,10 +45,23 @@ const GetThreadById = gql`
 `;
 
 const Thread = () => {
-  const [execGetThreadById, { data: threadData }] = useLazyQuery(GetThreadById);
+  const [execGetThreadById, { data: threadData }] = useLazyQuery(
+    GetThreadById,
+    { fetchPolicy: "no-cache" }
+  );
   const [thread, setThread] = useState<ThreadModel | undefined>();
   const { id } = useParams();
   const [readOnly, setReadOnly] = useState(false);
+
+  const refreshThread = () => {
+    if (id && id > 0) {
+      execGetThreadById({
+        variables: {
+          id,
+        },
+      });
+    }
+  };
 
   useEffect(() => {
     if (id && id > 0) {
@@ -94,6 +107,10 @@ const Thread = () => {
             responseCount={
               thread && thread.threadItems && thread.threadItems.length
             }
+            userId={thread?.user.id || "0"}
+            threadId={thread?.id || "0"}
+            allowUpdatePoints={true}
+            refreshThread={refreshThread}
           />
         </div>
       </div>
@@ -102,6 +119,7 @@ const Thread = () => {
         <ThreadResponsesBuilder
           threadItems={thread?.threadItems}
           readOnly={readOnly}
+          refreshThread={refreshThread}
         />
       </div>
     </div>

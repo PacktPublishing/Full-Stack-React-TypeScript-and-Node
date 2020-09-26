@@ -1,30 +1,102 @@
 import React, { FC } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { ThreadPointsBarProps } from "./ThreadPointsBar";
+import {
+  faHeart,
+  faChevronDown,
+  faChevronUp,
+} from "@fortawesome/free-solid-svg-icons";
+import { gql, useMutation } from "@apollo/client";
+import "./ThreadPointsInline.css";
 
-const ThreadPointsInline: FC<ThreadPointsBarProps> = ({
+const UpdateThreadItemPoint = gql`
+  mutation UpdateThreadItemPoint(
+    $userId: ID!
+    $threadItemId: ID!
+    $increment: Boolean!
+  ) {
+    updateThreadItemPoint(
+      userId: $userId
+      threadItemId: $threadItemId
+      increment: $increment
+    )
+  }
+`;
+
+class ThreadPointsInlineProps {
+  points: number = 0;
+  userId?: string;
+  threadId?: string;
+  threadItemId?: string;
+  allowUpdatePoints?: boolean = false;
+  refreshThread?: () => void;
+}
+
+const ThreadPointsInline: FC<ThreadPointsInlineProps> = ({
   points,
-  responseCount,
+  userId,
+  threadId,
+  threadItemId,
+  allowUpdatePoints,
+  refreshThread,
 }) => {
+  const [execUpdateThreadItemPoint] = useMutation(UpdateThreadItemPoint);
+
+  const onClickIncThreadItemPoint = async (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+
+    await execUpdateThreadItemPoint({
+      variables: {
+        userId,
+        threadItemId,
+        increment: true,
+      },
+    });
+    refreshThread && refreshThread();
+  };
+  const onClickDecThreadItemPoint = async (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+
+    await execUpdateThreadItemPoint({
+      variables: {
+        userId,
+        threadItemId,
+        increment: false,
+      },
+    });
+    refreshThread && refreshThread();
+  };
+
   return (
-    <React.Fragment>
-      <label
-        style={{
-          marginRight: ".75em",
-          marginTop: ".25em",
-        }}
+    <span className="threadpointsinline-item">
+      <div
+        className="threadpointsinline-item-btn"
+        style={{ display: `${allowUpdatePoints ? "block" : "none"}` }}
       >
-        {points || 0}
         <FontAwesomeIcon
-          icon={faHeart}
-          className="points-icon"
-          style={{
-            marginLeft: ".2em",
-          }}
+          icon={faChevronUp}
+          className="point-icon"
+          onClick={onClickIncThreadItemPoint}
         />
-      </label>
-    </React.Fragment>
+      </div>
+      {points}
+      <div
+        className="threadpointsinline-item-btn"
+        style={{ display: `${allowUpdatePoints ? "block" : "none"}` }}
+      >
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          className="point-icon"
+          onClick={onClickDecThreadItemPoint}
+        />
+      </div>
+      <div className="threadpointsinline-item-btn">
+        <FontAwesomeIcon icon={faHeart} className="points-icon" />
+      </div>
+    </span>
   );
 };
 
