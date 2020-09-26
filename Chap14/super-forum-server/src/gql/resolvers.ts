@@ -253,6 +253,9 @@ const resolvers: IResolvers = {
     ): Promise<string> => {
       let result = "";
       try {
+        if (!ctx.req.session || !ctx.req.session?.userId) {
+          return "You must be logged in to set likes.";
+        }
         result = await updateThreadPoint(
           args.userId,
           args.threadId,
@@ -271,6 +274,9 @@ const resolvers: IResolvers = {
     ): Promise<string> => {
       let result = "";
       try {
+        if (!ctx.req.session || !ctx.req.session?.userId) {
+          return "You must be logged in to set likes.";
+        }
         result = await updateThreadItemPoint(
           args.userId,
           args.threadItemId,
@@ -314,6 +320,7 @@ const resolvers: IResolvers = {
         }
         return user && user.messages ? user.messages[0] : STANDARD_ERROR;
       } catch (ex) {
+        console.log(ex.message);
         throw ex;
       }
     },

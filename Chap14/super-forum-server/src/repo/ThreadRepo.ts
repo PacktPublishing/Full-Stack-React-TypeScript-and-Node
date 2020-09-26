@@ -85,7 +85,7 @@ export const getThreadById = async (
       return 0;
     });
   }
-  console.log("getThreadById thread.threadItems", thread.threadItems);
+
   return {
     entity: thread,
   };
