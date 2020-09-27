@@ -79,10 +79,10 @@ const resolvers: IResolvers = {
       ctx: GqlContext,
       info: any
     ): Promise<Thread | EntityResult> => {
-      console.log("getThreadById");
       let thread: QueryOneResult<Thread>;
       try {
         thread = await getThreadById(args.id);
+
         if (thread.entity) {
           return thread.entity;
         }
@@ -247,7 +247,7 @@ const resolvers: IResolvers = {
     },
     updateThreadPoint: async (
       obj: any,
-      args: { userId: string; threadId: string; increment: boolean },
+      args: { threadId: string; increment: boolean },
       ctx: GqlContext,
       info: any
     ): Promise<string> => {
@@ -257,7 +257,7 @@ const resolvers: IResolvers = {
           return "You must be logged in to set likes.";
         }
         result = await updateThreadPoint(
-          args.userId,
+          ctx.req.session!.userId,
           args.threadId,
           args.increment
         );
@@ -268,7 +268,7 @@ const resolvers: IResolvers = {
     },
     updateThreadItemPoint: async (
       obj: any,
-      args: { userId: string; threadItemId: string; increment: boolean },
+      args: { threadItemId: string; increment: boolean },
       ctx: GqlContext,
       info: any
     ): Promise<string> => {
@@ -278,7 +278,7 @@ const resolvers: IResolvers = {
           return "You must be logged in to set likes.";
         }
         result = await updateThreadItemPoint(
-          args.userId,
+          ctx.req.session!.userId,
           args.threadItemId,
           args.increment
         );
