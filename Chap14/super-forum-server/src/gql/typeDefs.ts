@@ -96,6 +96,14 @@ const typeDefs = gql`
     lastModifiedOn: Date!
   }
 
+  type CategoryThread {
+    threadId: ID!
+    categoryId: ID!
+    categoryName: String!
+    title: String!
+    titleCreatedOn: Date!
+  }
+
   type Query {
     getThreadById(id: ID!): ThreadResult
     getThreadsByCategoryId(categoryId: ID!): ThreadArrayResult!
@@ -103,6 +111,7 @@ const typeDefs = gql`
     getThreadItemByThreadId(threadId: ID!): ThreadItemArrayResult!
     getAllCategories: [ThreadCategory!]
     me: UserResult!
+    getTopCategoryThread: [CategoryThread!]
   }
 
   type Mutation {
