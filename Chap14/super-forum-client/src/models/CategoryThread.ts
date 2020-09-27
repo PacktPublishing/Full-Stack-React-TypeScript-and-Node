@@ -1,7 +1,7 @@
 export default class CategoryThread {
   constructor(
-      public threadId: string,
-      public category: string,
-      public title: string
-  ){}
-  }
+    public threadId: string,
+    public categoryName: string,
+    public title: string
+  ) {}
+}
