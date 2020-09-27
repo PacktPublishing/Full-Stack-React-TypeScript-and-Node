@@ -66,16 +66,18 @@ const RichEditor: FC<RichEditorProps> = ({
 
   return (
     <Slate editor={editor} value={value} onChange={onChangeEditorValue}>
-      <Toolbar>
-        <MarkButton format="bold" icon="bold" />
-        <MarkButton format="italic" icon="italic" />
-        <MarkButton format="underline" icon="underlined" />
-        <MarkButton format="code" icon="code" />
-        <BlockButton format="heading-one" icon="header1" />
-        <BlockButton format="block-quote" icon="in_quotes" />
-        <BlockButton format="numbered-list" icon="list_numbered" />
-        <BlockButton format="bulleted-list" icon="list_bulleted" />
-      </Toolbar>
+      {readOnly ? null : (
+        <Toolbar>
+          <MarkButton format="bold" icon="bold" />
+          <MarkButton format="italic" icon="italic" />
+          <MarkButton format="underline" icon="underlined" />
+          <MarkButton format="code" icon="code" />
+          <BlockButton format="heading-one" icon="header1" />
+          <BlockButton format="block-quote" icon="in_quotes" />
+          <BlockButton format="numbered-list" icon="list_numbered" />
+          <BlockButton format="bulleted-list" icon="list_bulleted" />
+        </Toolbar>
+      )}
       <Editable
         className="editor"
         renderElement={renderElement}
