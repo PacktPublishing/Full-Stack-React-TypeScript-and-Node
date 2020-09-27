@@ -122,6 +122,7 @@ export const getThreadsByCategoryId = async (
 export const getThreadsLatest = async (): Promise<QueryArrayResult<Thread>> => {
   const threads = await Thread.createQueryBuilder("thread")
     .leftJoinAndSelect("thread.category", "category")
+    .leftJoinAndSelect("thread.user", "user")
     .leftJoinAndSelect("thread.threadItems", "threadItems")
     .orderBy("thread.createdOn", "DESC")
     .take(10)
