@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import "./ThreadCard.css";
 import Thread from "../../../models/Thread";
 import { Link, useHistory } from "react-router-dom";

@@ -9,6 +9,6 @@ export default class ThreadItem {
     public body: string,
     public user: User,
     public createdOn: Date,
-    public threadId: string
+    public thread: Thread
   ) {}
 }

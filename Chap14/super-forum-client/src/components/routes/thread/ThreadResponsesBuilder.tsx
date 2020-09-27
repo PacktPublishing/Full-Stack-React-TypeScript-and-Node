@@ -29,6 +29,7 @@ const ThreadResponsesBuilder: FC<ThreadResponsesBuilderProps> = ({
               points={ti.points}
               readOnly={readOnly}
               threadItemId={ti?.id || "0"}
+              threadId={ti.thread.id}
               refreshThread={refreshThread}
             />
           </li>
