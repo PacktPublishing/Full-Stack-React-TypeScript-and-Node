@@ -13,10 +13,10 @@ export const isStringValid = (
   max: number
 ) => {
   if (!str) return `${label} cannot be empty.`;
-  if (str.length < 5) {
+  if (str.length < min) {
     return `${label} must be at least ${min} characters.`;
   }
-  if (str.length > 150) {
+  if (str.length > max) {
     return `${label} cannot be greater than ${max} characters.`;
   }
   return "";
