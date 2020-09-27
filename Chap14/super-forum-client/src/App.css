@@ -14,6 +14,7 @@
 
   --sm-font-size: 0.95em;
   --sm-med-font-size: 1.1em;
+  --md-font-size: 1.25em;
 }
 
 .screen-root-container {
@@ -72,6 +73,8 @@ input[type="submit"]:hover {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: var(--md-font-size);
 }
 
 .cancel-btn {
