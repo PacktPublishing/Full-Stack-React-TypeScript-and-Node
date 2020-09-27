@@ -26,6 +26,9 @@
 }
 
 .threadcard-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-size: var(--sm-font-size);
   color: var(--proceed-color);
   font-weight: bold;

@@ -20,10 +20,10 @@ const ThreadCard: FC<ThreadCardProps> = ({ thread }) => {
     history.push("/thread/" + thread.id);
   };
 
-  const getResponses = (thread: Thread) => {
+  const getResponseCount = (thread: Thread) => {
     if (width <= 768) {
       return (
-        <label
+        <span
           style={{
             marginRight: ".5em",
           }}
@@ -37,7 +37,7 @@ const ThreadCard: FC<ThreadCardProps> = ({ thread }) => {
               marginTop: "-.25em",
             }}
           />
-        </label>
+        </span>
       );
     }
     return null;
@@ -78,17 +78,13 @@ const ThreadCard: FC<ThreadCardProps> = ({ thread }) => {
                 marginRight: ".5em",
               }}
             >
-              <label>
-                {thread.views}
-                <FontAwesomeIcon icon={faEye} className="icon-lg" />
-              </label>
+              {thread.views}
+              <FontAwesomeIcon icon={faEye} className="icon-lg" />
             </span>
-            <span>
-              {width <= 768 ? (
-                <ThreadPointsInline points={thread?.points || 0} />
-              ) : null}
-              {getResponses(thread)}
-            </span>
+            {width <= 768 ? (
+              <ThreadPointsInline points={thread?.points || 0} />
+            ) : null}
+            {getResponseCount(thread)}
           </div>
         </div>
       </div>

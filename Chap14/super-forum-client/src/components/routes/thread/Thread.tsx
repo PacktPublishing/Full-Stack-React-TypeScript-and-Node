@@ -10,8 +10,8 @@ import ThreadBody from "./ThreadBody";
 import ThreadResponsesBuilder from "./ThreadResponsesBuilder";
 import ThreadPointsBar from "../../points/ThreadPointsBar";
 import { gql, useLazyQuery } from "@apollo/client";
-import { useSelector } from "react-redux";
-import { AppState } from "../../../store/AppState";
+import ThreadPointsInline from "../../points/ThreadPointsInline";
+import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 
 const GetThreadById = gql`
   query GetThreadById($id: ID!) {
@@ -49,7 +49,7 @@ const GetThreadById = gql`
 `;
 
 const Thread = () => {
-  const user = useSelector((state: AppState) => state.user);
+  const { width } = useWindowDimensions();
   const [execGetThreadById, { data: threadData }] = useLazyQuery(
     GetThreadById,
     { fetchPolicy: "no-cache" }
@@ -97,6 +97,15 @@ const Thread = () => {
       </div>
       <div className="thread-content-container">
         <div className="thread-content-post-container">
+          {width <= 768 ? (
+            <ThreadPointsInline
+              points={thread?.points || 0}
+              threadId={thread?.id}
+              refreshThread={refreshThread}
+              allowUpdatePoints={true}
+            />
+          ) : null}
+
           <ThreadHeader
             userName={thread?.user.userName}
             lastModifiedOn={thread ? thread.lastModifiedOn : new Date()}
@@ -112,7 +121,6 @@ const Thread = () => {
             responseCount={
               thread && thread.threadItems && thread.threadItems.length
             }
-            userId={user?.id || "0"}
             threadId={thread?.id || "0"}
             allowUpdatePoints={true}
             refreshThread={refreshThread}
