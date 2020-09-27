@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "./ThreadCard.css";
 import Thread from "../../../models/Thread";
 import { Link, useHistory } from "react-router-dom";
@@ -7,14 +7,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useWindowDimensions } from "../../../hooks/useWindowDimensions";
 import ThreadPointsBar from "../../points/ThreadPointsBar";
 import ThreadPointsInline from "../../points/ThreadPointsInline";
+import { getTextFromNodes } from "../../editor/RichEditor";
 
 interface ThreadCardProps {
   thread: Thread;
 }
 
 const ThreadCard: FC<ThreadCardProps> = ({ thread }) => {
+  const [body, setBody] = useState<Array<JSX.Element>>();
   const history = useHistory();
   const { width } = useWindowDimensions();
+
+  useEffect(() => {
+    const bodyNode = JSON.parse(thread.body);
+    const bodyStr = getTextFromNodes(bodyNode);
+    const lines = bodyStr.split(/\n/);
+    let bodyLines = new Array<JSX.Element>();
+    let i = 0;
+    lines.forEach((line) => {
+      i += 1;
+      bodyLines.push(<div key={`body-line-${i}`}>{line}</div>);
+    });
+
+    setBody(bodyLines);
+  }, [thread]);
 
   const onClickShowThread = (e: React.MouseEvent<HTMLDivElement>) => {
     history.push("/thread/" + thread.id);
@@ -70,7 +86,7 @@ const ThreadCard: FC<ThreadCardProps> = ({ thread }) => {
             onClick={onClickShowThread}
             data-thread-id={thread.id}
           >
-            <div>{thread.body}</div>
+            <div>{body}</div>
           </div>
           <div className="threadcard-footer">
             <span
