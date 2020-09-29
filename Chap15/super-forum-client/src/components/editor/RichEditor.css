@@ -1,0 +1,17 @@
+.editor {
+  min-height: 5em;
+}
+
+code {
+  background-color: #eee;
+  padding: 0.45em;
+}
+
+blockquote {
+  border-left: 0.5em solid var(--border-color);
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 1em;
+  color: var(--point-color);
+  font-style: italic;
+}
