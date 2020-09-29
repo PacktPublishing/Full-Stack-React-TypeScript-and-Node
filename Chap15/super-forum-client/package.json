@@ -22,7 +22,6 @@
     "@types/redux": "^3.6.0",
     "@types/slate": "^0.47.7",
     "@types/slate-react": "^0.22.9",
-    "dotenv": "^8.2.0",
     "emotion": "^10.0.27",
     "graphql": "^15.3.0",
     "is-hotkey": "^0.1.6",
@@ -44,6 +43,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-dev": "REACT_APP_GQL-URL=\"http://localhost:5000/graphql\" react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
