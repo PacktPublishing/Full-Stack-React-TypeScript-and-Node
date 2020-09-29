@@ -1,0 +1,1 @@
+scp -r <source folder>\* <username>@<ip>:<dest folder>
