@@ -10,8 +10,9 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import ReactModal from "react-modal";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
+console.log("gql url", process.env.REACT_APP_GQL_URL);
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql",
+  uri: process.env.REACT_APP_GQL_URL,
   credentials: "include",
   cache: new InMemoryCache({
     resultCaching: false,

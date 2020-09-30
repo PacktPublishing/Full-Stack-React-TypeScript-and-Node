@@ -43,7 +43,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-dev": "REACT_APP_GQL-URL=\"http://localhost:5000/graphql\" react-scripts build",
+    "build-dev": "REACT_APP_GQL_URL=\"http://localhost:5000/graphql\" react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
