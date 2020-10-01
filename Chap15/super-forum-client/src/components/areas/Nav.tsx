@@ -5,6 +5,7 @@ import "./Nav.css";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 import ReactModal from "react-modal";
 import SideBarMenus from "./sidebar/SideBarMenus";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -46,7 +47,9 @@ const Nav = () => {
       </ReactModal>
       <nav>
         {getMobileMenu()}
-        <strong>SuperForum</strong>
+        <Link to="/">
+          <strong>SuperForum</strong>
+        </Link>
       </nav>
     </React.Fragment>
   );
