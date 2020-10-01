@@ -103,7 +103,7 @@ const Thread = () => {
   const [readOnly, setReadOnly] = useState(false);
   const user = useSelector((state: AppState) => state.user);
   const [
-    { userId, category, title, body, bodyNode },
+    { userId, category, title, bodyNode },
     threadReducerDispatch,
   ] = useReducer(threadReducer, {
     userId: user ? user.id : "0",

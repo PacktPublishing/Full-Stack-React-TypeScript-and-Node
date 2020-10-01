@@ -5,8 +5,16 @@ import ModalProps from "../types/ModalProps";
 import userReducer from "./common/UserReducer";
 import { allowSubmit } from "./common/Helpers";
 import PasswordComparison from "./common/PasswordComparison";
+import { gql, useMutation } from "@apollo/client";
+
+const RegisterMutation = gql`
+  mutation register($email: String!, $userName: String!, $password: String!) {
+    register(email: $email, userName: $userName, password: $password)
+  }
+`;
 
 const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
+  const [execRegister] = useMutation(RegisterMutation);
   const [
     { userName, password, email, passwordConfirm, resultMsg, isSubmitDisabled },
     dispatch,
@@ -31,11 +39,24 @@ const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
     else allowSubmit(dispatch, "", false);
   };
 
-  const onClickRegister = (
+  const onClickRegister = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    onClickToggle(e);
+
+    try {
+      const result = await execRegister({
+        variables: {
+          email,
+          userName,
+          password,
+        },
+      });
+      console.log("register result", result);
+      dispatch({ payload: result.data.register, type: "resultMsg" });
+    } catch (ex) {
+      console.log(ex);
+    }
   };
 
   const onClickCancel = (
