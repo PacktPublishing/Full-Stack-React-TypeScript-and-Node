@@ -8,7 +8,8 @@ import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
 import typeDefs from "./gql/typeDefs";
 import resolvers from "./gql/resolvers";
 import cors from "cors";
-require("dotenv").config();
+import { loadEnv } from "./common/envLoader";
+loadEnv();
 
 const main = async () => {
   const app = express();
