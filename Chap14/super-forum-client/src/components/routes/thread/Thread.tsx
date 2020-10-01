@@ -192,7 +192,7 @@ const Thread = () => {
     } else if (!title) {
       setPostMsg("Please enter a title.");
     } else if (!bodyNode) {
-      setPostMsg("Please select a category for your post.");
+      setPostMsg("Please enter a body.");
     } else {
       setPostMsg("");
       const newThread = {
