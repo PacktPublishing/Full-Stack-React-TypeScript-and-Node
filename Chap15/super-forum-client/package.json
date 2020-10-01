@@ -41,9 +41,9 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "REACT_APP_GQL_URL=\"http://localhost:5000/graphql\" react-scripts start",
     "build": "react-scripts build",
-    "build-dev": "REACT_APP_GQL_URL=\"http://localhost:5000/graphql\" react-scripts build",
+    "build-dev": "REACT_APP_GQL_URL=\"http://3.16.168.210/graphql\" react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
