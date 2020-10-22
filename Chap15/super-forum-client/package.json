@@ -13,7 +13,6 @@
     "@types/is-hotkey": "^0.1.1",
     "@types/jest": "^24.9.1",
     "@types/lodash": "^4.14.160",
-    "@types/moment": "^2.13.0",
     "@types/node": "^12.12.54",
     "@types/react": "^16.9.46",
     "@types/react-dom": "^16.9.8",
@@ -22,11 +21,11 @@
     "@types/redux": "^3.6.0",
     "@types/slate": "^0.47.7",
     "@types/slate-react": "^0.22.9",
+    "date-fns": "^2.16.1",
     "emotion": "^10.0.27",
     "graphql": "^15.3.0",
     "is-hotkey": "^0.1.6",
     "lodash": "^4.17.20",
-    "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropdown": "^1.8.0",
@@ -62,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "@types/date-fns": "^2.6.0",
     "@types/react-modal": "^3.10.6"
   }
 }
