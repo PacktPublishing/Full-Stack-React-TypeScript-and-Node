@@ -11,5 +11,7 @@ export const log = async (
 
   const result = await resolver(parent, args, context, info);
 
+  console.log("Finished call to resolver");
+
   return result;
 };
