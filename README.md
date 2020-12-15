@@ -48,7 +48,10 @@ With the following software and hardware list you can run all code files present
 
 | Chapter  | Software required                   | OS required                        |
 | -------- | ------------------------------------| -----------------------------------|
-| 1 to 17  | Node 12 or later with npm      | Windows, Mac OS X, and Linux (Any) |
+| 1 to 17  |React 17    | Windows, Mac OS X, and Linux (Any) |
+| 1 to 17  | Node 12 or greater with npm      | Windows, Mac OS X, and Linux (Any) |
+| 1 to 17  | TypeScript 3.7 or greater    | Windows, Mac OS X, and Linux (Any) |
+| 1 to 17  | A modern web browser: Chrome, Safari or Firefox      | Windows, Mac OS X, and Linux (Any) |
 | 13 to 17  | Redis server      | Windows, Mac OS X, and Linux (Any) |
 | 17  | AWS account     | Windows, Mac OS X, and Linux (Any) |
 
