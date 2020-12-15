@@ -40,7 +40,7 @@ if (test expression)
 ```
 
 **Following is what you need for this book:**
-Copy and paste the Audience section from the EPIC.
+The book is for web developers who want to go beyond front-end web development and enter the world of full-stack web development by learning about modern web technologies and how they come together. A good understanding of JavaScript programming is required before getting started with this web development book.
 
 With the following software and hardware list you can run all code files present in the book (Chapter 1-17)
 
