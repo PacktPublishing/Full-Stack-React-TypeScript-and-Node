@@ -58,9 +58,10 @@ With the following software and hardware list you can run all code files present
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it]().
 
 ### Related products
-* Node Cookbook - Fourth Edition [[Packt]](https://www.packtpub.com/product/node-cookbook-fourth-edition?utm_source=github&utm_medium=repository&utm_campaign=) [[Amazon]](https://www.amazon.com/dp/9781838558758)
+* Node Cookbook - Fourth Edition [[Packt]](https://www.packtpub.com/product/node-cookbook-fourth-edition/9781838558758) [[Amazon]](https://www.amazon.com/dp/1838558756)
 
-* Full-Stack React Projects - Second Edition [[Packt]](https://www.packtpub.com/product/full-stack-react-projects-second-edition?utm_source=github&utm_medium=repository&utm_campaign=) [[Amazon]](https://www.amazon.com/dp/9781839215414)
+* Full-Stack React Projects - Second Edition [[Packt]](https://www.packtpub.com/product/full-stack-react-projects-second-edition/9781839215414) [[Amazon]](https://www.amazon.com/dp/1839215410)
+
 
 ## Get to Know the Author
 **David Choi**
