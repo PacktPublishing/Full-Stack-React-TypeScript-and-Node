@@ -3,7 +3,7 @@
 -----
 *The $5 campaign         runs from __December 15th 2020__ to __January 13th 2021.__*
 
-# Full-Stack React 17, TypeScript, and Node
+# Full-Stack React, TypeScript, and Node
 
 <a href="https://www.packtpub.com/product/full-stack-react-typescript-and-node/9781839219931"><img src="https://static.packt-cdn.com/products/9781839219931/cover/smaller" alt="Full-Stack React 17, TypeScript, and Node" height="256px" align="right"></a>
 
