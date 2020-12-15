@@ -30,6 +30,7 @@ If you feel this book is for you, get your [copy](https://www.amazon.com/dp/9781
 alt="https://www.packtpub.com/" border="5" />
 
 **Following is what you need for this book:**
+
 With the following software and hardware list you can run all code files present in the book (Chapter 1-17).
 ### Software and Hardware List
 | Chapter | Software required | OS required |
