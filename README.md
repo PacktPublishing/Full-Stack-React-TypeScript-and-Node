@@ -49,8 +49,6 @@ With the following software and hardware list you can run all code files present
 | 1 to 17  | TypeScript 3.7 or greater    | Windows, Mac OS X, and Linux (Any) |
 | 1 to 17  | A modern web browser: Chrome, Safari or Firefox      | Windows, Mac OS X, and Linux (Any) |
 
-We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it]().
-
 ### Related products
 * Node Cookbook - Fourth Edition [[Packt]](https://www.packtpub.com/product/node-cookbook-fourth-edition/9781838558758) [[Amazon]](https://www.amazon.com/dp/1838558756)
 
