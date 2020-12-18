@@ -58,7 +58,8 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 
 ## Get to Know the Author
 **David Choi**
-is a developer with over 10 years’ experience in building enterprise-class applications using a variety of frameworks and languages. Most of his professional development experience has involved working in finance for companies such as JPMorgan, CSFB, and Franklin Templeton. He currently works at his own start-up, DzHaven, building an application to help devs help other devs.
-You can find David on Youtube at David Choi, or at his blog at jsoneaday.
+is a developer with over 10 years' experience in building enterprise-class applications using a variety of frameworks and languages. Most of his professional development experience has involved working in finance for companies such as JPMorgan, CSFB, and Franklin Templeton. He currently works at his own start-up, DzHaven, building an application to help devs help other devs.
+You can find David on YouTube at the David Choi channel, or on Twitter at jsoneaday.
+
 
 
