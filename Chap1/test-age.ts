@@ -19,4 +19,3 @@ const tom = {
 };
 
 canDrive(tom);
-//Das ist Test
