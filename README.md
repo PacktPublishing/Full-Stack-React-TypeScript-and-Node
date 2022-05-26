@@ -1,3 +1,7 @@
+## [Get this title for $10 on Packt's Spring Sale](https://www.packt.com/B15508?utm_source=github&utm_medium=packt-github-repo&utm_campaign=spring_10_dollar_2022)
+-----
+For a limited period, all eBooks and Videos are only $10. All the practical content you need \- by developers, for developers
+
 # Full-Stack React, TypeScript, and Node
 
 <a href="https://www.packtpub.com/product/full-stack-react-typescript-and-node/9781839219931"><img src="https://static.packt-cdn.com/products/9781839219931/cover/smaller" alt="Full-Stack React 17, TypeScript, and Node" height="256px" align="right"></a>
