@@ -54,7 +54,9 @@ With the following software and hardware list you can run all code files present
 
 * Full-Stack React Projects - Second Edition [[Packt]](https://www.packtpub.com/product/full-stack-react-projects-second-edition/9781839215414) [[Amazon]](https://www.amazon.com/dp/1839215410)
 
-
+## Errata 
+ * Page 18 (bullet point 7):  **npm install typescript** _should be_ **npm install -g typescript**
+ 
 ## Get to Know the Author
 **David Choi**
 is a developer with over 10 years' experience in building enterprise-class applications using a variety of frameworks and languages. Most of his professional development experience has involved working in finance for companies such as JPMorgan, CSFB, and Franklin Templeton. He currently works at his own start-up, DzHaven, building an application to help devs help other devs.
